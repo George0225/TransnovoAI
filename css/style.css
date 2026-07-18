@@ -1799,6 +1799,15 @@ p {
   border: 2px solid var(--accent-cyan);
 }
 
+.demo-popout-iframe {
+  width: 90vw;
+  height: 80vh;
+  border: 2px solid var(--accent-cyan);
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  background: #0f1729;
+}
+
 .demo-popout-close {
   position: absolute;
   top: -20px;

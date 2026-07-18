@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>集团 2025 年度经营分析看板 · NetSuite</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(135deg, #0f1729 0%, #1a2340 100%);
+    color: #e6ebf5;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .title h1 {
+    font-size: 26px;
+    font-weight: 600;
+    background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .title .sub {
+    color: #7a869a;
+    font-size: 13px;
+    margin-top: 4px;
+  }
+  .meta { text-align: right; color: #7a869a; font-size: 12px; }
+  .meta .badge {
+    display: inline-block;
+    background: rgba(0, 242, 254, 0.1);
+    color: #4facfe;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin-left: 8px;
+  }
+
+  .kpi-row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .kpi {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 18px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .kpi::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent, #4facfe);
+  }
+  .kpi .label { color: #7a869a; font-size: 12px; margin-bottom: 8px; }
+  .kpi .value { font-size: 22px; font-weight: 600; }
+  .kpi .unit { font-size: 12px; color: #7a869a; margin-left: 4px; }
+  .kpi .sub-info { font-size: 11px; color: #4facfe; margin-top: 6px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .card h3 {
+    font-size: 14px;
+    font-weight: 500;
+    color: #b3bcc9;
+    margin-bottom: 16px;
+  }
+  .chart { height: 320px; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  th, td {
+    padding: 10px 12px;
+    text-align: right;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  th:first-child, td:first-child { text-align: left; }
+  thead th {
+    color: #7a869a;
+    font-weight: 500;
+    background: rgba(255,255,255,0.02);
+  }
+  tr.total td {
+    font-weight: 600;
+    color: #4facfe;
+    background: rgba(79, 172, 254, 0.05);
+  }
+  tr.emphasis td {
+    color: #00f2fe;
+    font-weight: 500;
+  }
+  .pos { color: #52c41a; }
+  .neg { color: #ff7875; }
+
+  .footer {
+    text-align: center;
+    color: #4a5568;
+    font-size: 11px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="title">
+    <h1>集团 2025 年度经营分析看板</h1>
+    <div class="sub">数据源：NetSuite GL · 三家运营主体 · 单体口径未抵消</div>
+  </div>
+  <div class="meta">
+    期间：2025-01-01 ~ 2025-12-31
+    <span class="badge">LIVE from NetSuite</span>
+  </div>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi" style="--accent:#4facfe">
+    <div class="label">营业收入</div>
+    <div class="value">1.82<span class="unit">亿元</span></div>
+    <div class="sub-info">¥ 181,541,810</div>
+  </div>
+  <div class="kpi" style="--accent:#00f2fe">
+    <div class="label">毛利</div>
+    <div class="value">1.79<span class="unit">亿元</span></div>
+    <div class="sub-info">毛利率 98.6%</div>
+  </div>
+  <div class="kpi" style="--accent:#52c41a">
+    <div class="label">营业利润</div>
+    <div class="value">1.74<span class="unit">亿元</span></div>
+    <div class="sub-info">营业利润率 95.6%</div>
+  </div>
+  <div class="kpi" style="--accent:#faad14">
+    <div class="label">其他收益</div>
+    <div class="value">7,533<span class="unit">万元</span></div>
+    <div class="sub-info">投资 / 补贴 / 利息</div>
+  </div>
+  <div class="kpi" style="--accent:#eb2f96">
+    <div class="label">利润总额</div>
+    <div class="value">2.49<span class="unit">亿元</span></div>
+    <div class="sub-info">¥ 248,956,477</div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h3>营业收入 · 月度趋势（按主体）</h3>
+    <div id="chartMonthly" class="chart"></div>
+  </div>
+  <div class="card">
+    <h3>收入主体分布</h3>
+    <div id="chartDonut" class="chart"></div>
+  </div>
+</div>
+
+<div class="grid-3">
+  <div class="card">
+    <h3>利润结构 · 瀑布图</h3>
+    <div id="chartWaterfall" class="chart"></div>
+  </div>
+  <div class="card">
+    <h3>各主体经营指标对比</h3>
+    <div id="chartCompare" class="chart"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h3>利润表 · 分主体明细（人民币元）</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>项目</th>
+        <th>上海健耕医药</th>
+        <th>上海云泽生物</th>
+        <th>广东健耕药业</th>
+        <th>集团合计</th>
+        <th>占比</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>一、营业收入</td>
+        <td>107,772,318.15</td>
+        <td>62,617,478.61</td>
+        <td>11,152,013.27</td>
+        <td class="pos">181,541,810.03</td>
+        <td>100.0%</td>
+      </tr>
+      <tr>
+        <td>　减：营业成本</td>
+        <td>2,285,003.67</td>
+        <td>84,971.29</td>
+        <td>108,624.77</td>
+        <td>2,478,599.73</td>
+        <td>1.4%</td>
+      </tr>
+      <tr class="emphasis">
+        <td>二、毛利</td>
+        <td>105,487,314.48</td>
+        <td>62,532,507.32</td>
+        <td>11,043,388.50</td>
+        <td>179,063,210.30</td>
+        <td>98.6%</td>
+      </tr>
+      <tr>
+        <td>　毛利率</td>
+        <td>97.9%</td>
+        <td>99.9%</td>
+        <td>99.0%</td>
+        <td>98.6%</td>
+        <td>—</td>
+      </tr>
+      <tr>
+        <td>　减：期间费用</td>
+        <td>2,126,132.36</td>
+        <td>3,306,580.43</td>
+        <td>—</td>
+        <td>5,432,712.79</td>
+        <td>3.0%</td>
+      </tr>
+      <tr class="emphasis">
+        <td>三、营业利润</td>
+        <td>103,361,182.12</td>
+        <td>59,225,926.89</td>
+        <td>11,043,388.50</td>
+        <td>173,630,497.51</td>
+        <td>95.6%</td>
+      </tr>
+      <tr>
+        <td>　加：其他收益</td>
+        <td>75,325,979.38</td>
+        <td>—</td>
+        <td>—</td>
+        <td>75,325,979.38</td>
+        <td>41.5%</td>
+      </tr>
+      <tr class="total">
+        <td>四、利润总额</td>
+        <td>178,687,161.50</td>
+        <td>59,225,926.89</td>
+        <td>11,043,388.50</td>
+        <td>248,956,476.89</td>
+        <td>137.1%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="footer">
+  Powered by NetSuite MCP · SuiteQL · ECharts · 生成时间 2026-07-18
+</div>
+
+<script>
+const months = ['2025-01','2025-02','2025-03','2025-04','2025-05','2025-06','2025-07','2025-08','2025-09','2025-10','2025-11','2025-12'];
+const revSub2 = [10413070.34, 7504980.54, 11115804.70, 16236606.92, 7274457.48, 7963957.33, 7070044.21, 6236805.34, 10429827.72, 5035839.63, 6721402.20, 11769521.74];
+const revSub3 = [4678365.06, 4162413.76, 6776852.22, 6962200.91, 3673306.50, 5666111.88, 4829024.94, 3969643.37, 5919649.34, 1452496.48, 7468788.51, 7058625.64];
+const revSub4 = [1114140.65, 1103144.71, 1273966.81, 1320926.22, 1348420.37, 839560.46, 449663.31, 708266.83, 1028230.10, 786212.39, 334336.28, 845145.14];
+
+const commonTextStyle = { color: '#e6ebf5' };
+const axisLine = { lineStyle: { color: 'rgba(255,255,255,0.15)' } };
+const splitLine = { lineStyle: { color: 'rgba(255,255,255,0.05)' } };
+
+echarts.init(document.getElementById('chartMonthly')).setOption({
+  textStyle: commonTextStyle,
+  tooltip: { trigger: 'axis', backgroundColor: 'rgba(15,23,41,0.95)', borderColor: '#4facfe', textStyle: { color: '#fff' },
+    valueFormatter: v => '¥' + (v/10000).toFixed(1) + '万' },
+  legend: { textStyle: { color: '#b3bcc9' }, bottom: 0 },
+  grid: { left: 60, right: 20, top: 20, bottom: 50 },
+  xAxis: { type: 'category', data: months, axisLine, axisLabel: { color: '#7a869a' } },
+  yAxis: { type: 'value', axisLine, splitLine, axisLabel: { color: '#7a869a', formatter: v => (v/10000).toFixed(0) + '万' } },
+  series: [
+    { name: '上海健耕医药', type: 'line', smooth: true, data: revSub2, itemStyle: { color: '#4facfe' }, areaStyle: { opacity: 0.15 }, symbolSize: 6 },
+    { name: '上海云泽生物', type: 'line', smooth: true, data: revSub3, itemStyle: { color: '#00f2fe' }, areaStyle: { opacity: 0.15 }, symbolSize: 6 },
+    { name: '广东健耕药业', type: 'line', smooth: true, data: revSub4, itemStyle: { color: '#faad14' }, areaStyle: { opacity: 0.15 }, symbolSize: 6 }
+  ]
+});
+
+echarts.init(document.getElementById('chartDonut')).setOption({
+  textStyle: commonTextStyle,
+  tooltip: { trigger: 'item', backgroundColor: 'rgba(15,23,41,0.95)', borderColor: '#4facfe', textStyle: { color: '#fff' },
+    formatter: p => `${p.name}<br/>¥${(p.value/100000000).toFixed(2)}亿 (${p.percent}%)` },
+  legend: { orient: 'vertical', left: 'left', textStyle: { color: '#b3bcc9' } },
+  series: [{
+    type: 'pie',
+    radius: ['45%', '75%'],
+    center: ['65%', '50%'],
+    label: { color: '#e6ebf5', formatter: '{d}%' },
+    labelLine: { lineStyle: { color: '#7a869a' } },
+    data: [
+      { value: 107772318, name: '上海健耕医药', itemStyle: { color: '#4facfe' } },
+      { value: 62617479, name: '上海云泽生物', itemStyle: { color: '#00f2fe' } },
+      { value: 11152013, name: '广东健耕药业', itemStyle: { color: '#faad14' } }
+    ]
+  }]
+});
+
+echarts.init(document.getElementById('chartWaterfall')).setOption({
+  textStyle: commonTextStyle,
+  tooltip: { trigger: 'axis', backgroundColor: 'rgba(15,23,41,0.95)', borderColor: '#4facfe', textStyle: { color: '#fff' },
+    formatter: params => {
+      const bar = params.find(p => p.seriesName !== 'placeholder');
+      return `${bar.name}<br/>¥${(bar.value/10000).toFixed(1)}万`;
+    }
+  },
+  grid: { left: 70, right: 20, top: 20, bottom: 40 },
+  xAxis: { type: 'category', data: ['营业收入','营业成本','毛利','期间费用','营业利润','其他收益','利润总额'],
+    axisLine, axisLabel: { color: '#7a869a', fontSize: 11 } },
+  yAxis: { type: 'value', axisLine, splitLine, axisLabel: { color: '#7a869a', formatter: v => (v/10000000).toFixed(0)+'千万' } },
+  series: [
+    { name: 'placeholder', type: 'bar', stack: 'w', itemStyle: { color: 'transparent' },
+      data: [0, 179063210, 0, 173630497, 0, 173630497, 0] },
+    { name: '金额', type: 'bar', stack: 'w',
+      label: { show: true, position: 'top', color: '#e6ebf5', formatter: p => (p.value/10000000).toFixed(1)+'千万' },
+      data: [
+        { value: 181541810, itemStyle: { color: '#4facfe' } },
+        { value: 2478600, itemStyle: { color: '#ff7875' } },
+        { value: 179063210, itemStyle: { color: '#00f2fe' } },
+        { value: 5432713, itemStyle: { color: '#ff7875' } },
+        { value: 173630497, itemStyle: { color: '#52c41a' } },
+        { value: 75325979, itemStyle: { color: '#faad14' } },
+        { value: 248956477, itemStyle: { color: '#eb2f96' } }
+      ]
+    }
+  ]
+});
+
+echarts.init(document.getElementById('chartCompare')).setOption({
+  textStyle: commonTextStyle,
+  tooltip: { trigger: 'axis', backgroundColor: 'rgba(15,23,41,0.95)', borderColor: '#4facfe', textStyle: { color: '#fff' },
+    valueFormatter: v => '¥' + (v/10000).toFixed(1) + '万' },
+  legend: { textStyle: { color: '#b3bcc9' }, bottom: 0 },
+  grid: { left: 70, right: 20, top: 20, bottom: 50 },
+  xAxis: { type: 'category', data: ['上海健耕医药','上海云泽生物','广东健耕药业'], axisLine, axisLabel: { color: '#7a869a' } },
+  yAxis: { type: 'value', axisLine, splitLine, axisLabel: { color: '#7a869a', formatter: v => (v/10000).toFixed(0)+'万' } },
+  series: [
+    { name: '营业收入', type: 'bar', data: [107772318, 62617479, 11152013], itemStyle: { color: '#4facfe' } },
+    { name: '营业利润', type: 'bar', data: [103361182, 59225927, 11043389], itemStyle: { color: '#52c41a' } }
+  ]
+});
+
+window.addEventListener('resize', () => {
+  document.querySelectorAll('.chart').forEach(el => {
+    const inst = echarts.getInstanceByDom(el);
+    if (inst) inst.resize();
+  });
+});
+</script>
+</body>
+</html>

@@ -1167,7 +1167,7 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         document.getElementById('explainOverlay').classList.remove('open');
-        document.getElementById('demoPopout').classList.remove('open');
+        closeDemoPopout();
         document.getElementById('profileDetailOverlay').classList.remove('open');
       }
     });
@@ -1178,7 +1178,10 @@
     }
 
     function closeDemoPopout(event) {
-      document.getElementById('demoPopout').classList.remove('open');
+      var popout = document.getElementById('demoPopout');
+      popout.classList.remove('open');
+      var iframe = popout.querySelector('iframe');
+      if (iframe) iframe.src = '';
     }
 
     // Profile detail popout data
@@ -1260,16 +1263,31 @@
     var workflowImages = {
       auth: { src: 'images/qoder-netsuite-auth.jpg', caption: '<strong>Step 1: OAuth 授权</strong> — Qoder 通过 NetSuite OAuth 2.0 获得「上海健耕医药科技股份有限公司」账户访问权限，以 claude 角色执行数据操作' },
       pl: { src: 'images/qoder-netsuite-pl.jpg', caption: '<strong>Step 2: AI 生成利润表</strong> — Qoder 通过 MCP 查询 NetSuite GL (transactionaccountingline)，按子公司拆分收入/成本/费用，自动合并生成集团利润表' },
-      dashboard: { src: 'images/qoder-netsuite-pl.jpg', caption: '<strong>Step 3: 经营分析看板</strong> — AI 自动生成 ECharts 可视化看板，含 KPI 卡片、收入结构饼图、月度趋势折线图，可直接交付给管理层' }
+      dashboard: { iframe: 'netsuite_pl_dashboard.html', caption: '<strong>Step 3: 经营分析看板</strong> — AI 自动生成 ECharts 可视化看板，含 KPI 卡片、收入结构饼图、月度趋势折线图、瀑布图，可直接交付给管理层' }
     };
 
     function openWorkflowImg(key) {
       var data = workflowImages[key];
       if (!data) return;
       var popout = document.getElementById('demoPopout');
-      var img = popout.querySelector('.demo-popout-content img');
+      var contentEl = popout.querySelector('.demo-popout-content');
+      var img = contentEl.querySelector('img');
+      var iframe = contentEl.querySelector('iframe');
       var caption = popout.querySelector('.demo-popout-caption');
-      if (img) img.src = data.src;
+
+      if (data.iframe) {
+        if (img) img.style.display = 'none';
+        if (!iframe) {
+          iframe = document.createElement('iframe');
+          iframe.className = 'demo-popout-iframe';
+          contentEl.insertBefore(iframe, caption);
+        }
+        iframe.src = data.iframe;
+        iframe.style.display = 'block';
+      } else {
+        if (iframe) { iframe.style.display = 'none'; iframe.src = ''; }
+        if (img) { img.style.display = 'block'; img.src = data.src; }
+      }
       if (caption) caption.innerHTML = data.caption;
       popout.classList.add('open');
     }
@@ -1288,7 +1306,7 @@
   <!-- Demo Popout Modal (body level for proper fixed positioning) -->
   <div class="demo-popout-overlay" id="demoPopout" onclick="closeDemoPopout(event)">
     <div class="demo-popout-content" onclick="event.stopPropagation()">
-      <button class="demo-popout-close" onclick="document.getElementById('demoPopout').classList.remove('open')">&times;</button>
+      <button class="demo-popout-close" onclick="closeDemoPopout()">&times;</button>
       <img src="images/netsuite-mcp-demo.jpg" alt="NetSuite MCP 采购申请自动化" />
       <div class="demo-popout-caption">
         <strong>Qoder MCP × NetSuite RESTlet</strong> — 携程报销数据 → 自动生成采购申请(PR002317) + 采购订单(P0003932)，71行明细全自动匹配，PR+PO已自动链接
