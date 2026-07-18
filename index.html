@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gencode Intelligence 智能工作台 — 上海健耕医药科技</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Circuit Corner Decorations -->
+  <svg class="circuit-corner top-left" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 110V60L30 40H70L90 20H110" stroke="#5A6D80" stroke-width="1"/>
+    <path d="M10 80V40L40 10H80" stroke="#5A6D80" stroke-width="0.5"/>
+    <circle cx="30" cy="40" r="3" fill="#5A6D80"/>
+    <circle cx="70" cy="40" r="2" fill="#5A6D80"/>
+    <circle cx="90" cy="20" r="2" fill="#5A6D80"/>
+  </svg>
+  <svg class="circuit-corner bottom-right" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10 110V60L30 40H70L90 20H110" stroke="#5A6D80" stroke-width="1"/>
+    <path d="M10 80V40L40 10H80" stroke="#5A6D80" stroke-width="0.5"/>
+    <circle cx="30" cy="40" r="3" fill="#5A6D80"/>
+    <circle cx="70" cy="40" r="2" fill="#5A6D80"/>
+    <circle cx="90" cy="20" r="2" fill="#5A6D80"/>
+  </svg>
+
+  <!-- Navigation -->
+  <nav class="nav" id="mainNav">
+    <div class="nav-brand">
+      <svg class="nav-logo" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="8" fill="#00C8E0" fill-opacity="0.1"/>
+        <path d="M18 8L26 12V20L18 28L10 24V12L18 8Z" stroke="#00C8E0" stroke-width="1.5" fill="none"/>
+        <path d="M18 12L22 14V18L18 22L14 20V14L18 12Z" fill="#00C8E0" fill-opacity="0.3" stroke="#00C8E0" stroke-width="1"/>
+        <circle cx="18" cy="17" r="2.5" fill="#00C8E0"/>
+      </svg>
+      <div class="nav-title">Gencode Intelligence <span>智能工作台</span></div>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#section-ai" class="active">AI能力对比</a></li>
+      <li><a href="#section-audit">财务智能审核</a></li>
+      <li><a href="#section-customer">客户360°画像</a></li>
+      <li><a href="#section-pricing">竞标价格预测</a></li>
+      <li><a href="#section-rdkb">研发知识库</a></li>
+    </ul>
+    <div class="nav-user">G</div>
+  </nav>
+
+  <!-- ========== SECTION 1: AI Capability Comparison ========== -->
+  <section class="section" id="section-ai" style="padding-top: 160px;">
+    <div class="section-content">
+      <div class="section-label">// SECTION 01</div>
+      <div class="section-header">
+        <h2>AI能力介绍与选型对比</h2>
+        <p>四款主流AI产品横向对比，均支持MCP协议，但在企业落地场景中存在关键差异</p>
+      </div>
+
+      <!-- MCP explainer -->
+      <div style="background:var(--bg-tertiary); border-radius:12px; border:1px solid var(--border-default); padding:20px 24px; margin-bottom:32px;">
+        <div style="display:flex; align-items:flex-start; gap:12px;">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" style="flex-shrink:0; margin-top:2px;"><circle cx="10" cy="10" r="8" stroke="#6C3CE0" stroke-width="1.5"/><path d="M10 6v5M10 13v1" stroke="#6C3CE0" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <div>
+            <p style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">什么是MCP（模型上下文协议）？<button class="explain-btn" onclick="showExplain('mcp')">? 通俗解释</button></p>
+            <p style="font-size:13px;">MCP由Anthropic于2024年底开源发布，是一种标准化协议——好比AI世界的"USB-C接口"。它让AI模型能安全、规范地接入企业内部系统（ERP、OA、CRM）和外部服务，无需为每个系统单独开发对接。<strong>四款产品均已支持MCP</strong>，差异在于：谁真正落地了企业级集成？</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 Product Cards -->
+      <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:24px;">
+        <!-- Claude -->
+        <div class="card">
+          <div class="flex items-center gap-12 mb-16">
+            <div class="mcp-node-icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="10" stroke="#5A6D80" stroke-width="1.5"/><path d="M9 14c0-3 2.5-5 5-5s5 2 5 5-2.5 5-5 5" stroke="#5A6D80" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h4>Claude</h4>
+              <span class="badge badge-violet">Anthropic · MCP发明者</span>
+            </div>
+          </div>
+          <p style="font-size:13px; margin-bottom:16px;">MCP协议的创造者，拥有业界最强推理能力。Claude Desktop/Code均支持MCP Server连接。本质是通用大语言模型+API服务，非专用开发平台。</p>
+          <ul style="font-size:13px; color:var(--text-secondary); list-style:none;">
+            <li style="padding:4px 0;">✓ MCP协议创建者，生态最完善</li>
+            <li style="padding:4px 0;">✓ 超强推理与长文本理解（200K上下文）<button class="explain-btn" onclick="showExplain('context')">?</button></li>
+            <li style="padding:4px 0;">✓ Claude Desktop 支持本地 MCP Server</li>
+            <li style="padding:4px 0; color:var(--accent-red);">✗ 服务器在海外，数据出境合规风险</li>
+            <li style="padding:4px 0; color:var(--accent-red);">✗ 无IDE/开发工具，需自行搭建开发链路<button class="explain-btn" onclick="showExplain('ide')">?</button></li>
+            <li style="padding:4px 0; color:var(--accent-red);">✗ 中国大陆无法直接访问</li>
+          </ul>
+        </div>
+
+        <!-- Qoder (Recommended) -->
+        <div class="card recommended">
+          <div class="badge badge-cyan badge-pulse" style="position:absolute; top:16px; right:16px;">
+            ★ 企业推荐
+          </div>
+          <div class="flex items-center gap-12 mb-16">
+            <div class="mcp-node-icon active">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="6" y="6" width="16" height="16" rx="4" stroke="#00C8E0" stroke-width="1.5"/><path d="M11 14l2 2 4-4" stroke="#00C8E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h4>Qoder</h4>
+              <span class="badge badge-cyan">已采购 · 阿里云</span>
+            </div>
+          </div>
+          <p style="font-size:13px; margin-bottom:16px;">智能体编码平台（Agentic Coding Platform），支持MCP接入企业系统。独有Quest Mode可将复杂任务自主委托给AI完成，配合Memory持久记忆，是"能干活"的AI，不只是"能聊天"。</p>
+          <ul style="font-size:13px; color:var(--text-secondary); list-style:none;">
+            <li style="padding:4px 0; color:var(--accent-cyan);">✓ MCP集成 + 已落地NetSuite ERP对接</li>
+            <li style="padding:4px 0; color:var(--accent-cyan);">✓ Quest Mode：写规格说明→AI自主执行长任务<button class="explain-btn" onclick="showExplain('quest')">?</button></li>
+            <li style="padding:4px 0; color:var(--accent-cyan);">✓ Memory持久记忆 + Repo Wiki代码库索引<button class="explain-btn" onclick="showExplain('memory')">?</button></li>
+            <li style="padding:4px 0; color:var(--accent-cyan);">✓ 自动模型路由，按任务复杂度智能选模型<button class="explain-btn" onclick="showExplain('routing')">?</button></li>
+            <li style="padding:4px 0;">✓ 多端覆盖：IDE/CLI/JetBrains/移动端</li>
+            <li style="padding:4px 0;">✓ 阿里云部署，国内数据合规</li>
+          </ul>
+        </div>
+
+        <!-- CodeBuddy -->
+        <div class="card">
+          <div class="flex items-center gap-12 mb-16">
+            <div class="mcp-node-icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 8h12v12H8z" stroke="#5A6D80" stroke-width="1.5" rx="2"/><path d="M11 12l2 2 4-3" stroke="#5A6D80" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h4>CodeBuddy</h4>
+              <span class="badge badge-green">腾讯云 · 开发者工具</span>
+            </div>
+          </div>
+          <p style="font-size:13px; margin-bottom:16px;">腾讯云AI代码编辑器，面向开发人员。支持MCP可视化配置，有MCP Square市场可一键安装服务端。偏向腾讯云生态内使用。</p>
+          <ul style="font-size:13px; color:var(--text-secondary); list-style:none;">
+            <li style="padding:4px 0;">✓ MCP支持 + 可视化配置（无需编辑JSON）</li>
+            <li style="padding:4px 0;">✓ MCP Square市场，预置丰富服务端</li>
+            <li style="padding:4px 0;">✓ 腾讯云生态内集成便利</li>
+            <li style="padding:4px 0; color:var(--accent-red);">✗ 深度绑定腾讯云，跨云集成受限</li>
+            <li style="padding:4px 0; color:var(--accent-red);">✗ 无自主任务执行能力（仅对话模式）</li>
+            <li style="padding:4px 0; color:var(--accent-red);">✗ 面向开发者，非技术人员难以直接使用</li>
+          </ul>
+        </div>
+
+        <!-- WorkBuddy -->
+        <div class="card">
+          <div class="flex items-center gap-12 mb-16">
+            <div class="mcp-node-icon">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="6" y="8" width="16" height="12" rx="3" stroke="#5A6D80" stroke-width="1.5"/><path d="M10 13h8M10 16h5" stroke="#5A6D80" stroke-width="1.2" stroke-linecap="round"/><circle cx="20" cy="8" r="3" fill="#5A6D80" fill-opacity="0.3" stroke="#5A6D80" stroke-width="1"/></svg>
+            </div>
+            <div>
+              <h4>WorkBuddy</h4>
+              <span class="badge badge-green">腾讯云 · 办公助手</span>
+            </div>
+          </div>
+          <p style="font-size:13px; margin-bottom:16px;">腾讯云桌面AI办公助手，面向非技术人员。可用自然语言驱动复杂工作流，内置100+虚拟专家角色。支持MCP连接外部服务，通过微信/Slack等远程控制。</p>
+          <ul style="font-size:13px; color:var(--text-secondary); list-style:none;">
+            <li style="padding:4px 0;">✓ MCP支持，可连接外部工具和服务</li>
+            <li style="padding:4px 0;">✓ 自然语言驱动，非技术人员可直接使用</li>
+            <li style="padding:4px 0;">✓ 100+虚拟专家角色（报告撰写、数据分析等）</li>
+            <li style="padding:4px 0; color:var(--accent-red);">✗ 内测阶段，功能尚未完全稳定</li>
+            <li style="padding:4px 0; color:var(--accent-red);">✗ 偏办公自动化，无代码开发能力</li>
+            <li style="padding:4px 0; color:var(--accent-red);">✗ 无企业级ERP/财务系统深度集成案例</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Comparison Table -->
+      <table class="comparison-table mt-32">
+        <thead>
+          <tr>
+            <th>对比维度</th>
+            <th>Claude</th>
+            <th style="color:var(--accent-cyan);">Qoder ★</th>
+            <th>CodeBuddy</th>
+            <th>WorkBuddy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>MCP支持</td>
+            <td>✓ 协议发明者，生态最完善</td>
+            <td style="color:var(--accent-cyan); font-weight:500;">✓ 完整支持 + 已落地企业集成</td>
+            <td>✓ 可视化配置 + 市场</td>
+            <td>✓ 支持连接外部服务</td>
+          </tr>
+          <tr>
+            <td>NetSuite ERP对接</td>
+            <td>需自行开发MCP Server</td>
+            <td style="color:var(--accent-cyan); font-weight:500;">✓ 已完成，可直接拉取财务数据</td>
+            <td>需自行开发对接</td>
+            <td>无相关案例</td>
+          </tr>
+          <tr>
+            <td>自主任务执行<button class="explain-btn" onclick="showExplain('autonomous')">?</button></td>
+            <td>需人工持续交互引导</td>
+            <td style="color:var(--accent-cyan); font-weight:500;">Quest Mode — AI异步自主完成</td>
+            <td>仅实时对话模式</td>
+            <td>可执行预设工作流</td>
+          </tr>
+          <tr>
+            <td>项目记忆能力<button class="explain-btn" onclick="showExplain('memory')">?</button></td>
+            <td>仅单次对话上下文</td>
+            <td style="color:var(--accent-cyan); font-weight:500;">Memory持久记忆 + Repo Wiki</td>
+            <td>项目级上下文</td>
+            <td>对话内记忆</td>
+          </tr>
+          <tr>
+            <td>目标用户</td>
+            <td>通用（研究/创作/开发）</td>
+            <td style="font-weight:500;">开发者 + 业务人员（双覆盖）</td>
+            <td>专业开发人员</td>
+            <td>非技术办公人员</td>
+          </tr>
+          <tr>
+            <td>使用形态</td>
+            <td>Web / API / Desktop</td>
+            <td style="font-weight:500;">IDE + CLI + JetBrains + Mobile</td>
+            <td>独立编辑器 + VS Code</td>
+            <td>桌面App + 微信/Slack</td>
+          </tr>
+          <tr>
+            <td>数据合规</td>
+            <td style="color:var(--accent-red);">海外服务器，数据出境风险</td>
+            <td style="color:var(--accent-cyan); font-weight:500;">阿里云国内部署，数据可控</td>
+            <td>腾讯云国内部署</td>
+            <td>腾讯云国内部署</td>
+          </tr>
+          <tr>
+            <td>产品成熟度</td>
+            <td>成熟商用（海外）</td>
+            <td style="font-weight:500;">已商用，阿里云正式发售</td>
+            <td>已发布正式版</td>
+            <td style="color:var(--accent-red);">内测阶段</td>
+          </tr>
+          <tr>
+            <td>采购状态</td>
+            <td>未采购（大陆不可用）</td>
+            <td style="color:var(--accent-green); font-weight:600;">✓ 已采购并投入使用</td>
+            <td>未采购</td>
+            <td>未采购（内测中）</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Key Insight Box -->
+      <div class="ai-insight-box mt-32">
+        <h4>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L10 6H14L11 9L12 13L8 11L4 13L5 9L2 6H6L8 2Z" fill="#00C8E0" fill-opacity="0.3" stroke="#00C8E0" stroke-width="1"/></svg>
+          选型结论
+        </h4>
+        <p style="margin-top:4px;">四款产品定位各有侧重：Claude推理最强但无法在大陆使用；CodeBuddy面向开发者但绑定腾讯生态；WorkBuddy面向办公人员但尚处内测且无ERP集成。<strong style="color:var(--accent-cyan);">Qoder是唯一兼具以下三个优势的平台：①已实际落地NetSuite ERP集成 ②Quest Mode自主任务执行 ③同时服务开发者与业务人员</strong>。且已完成阿里云采购，数据合规、即刻可用。</p>
+      </div>
+
+      <!-- MCP Integration Diagram -->
+      <div class="mcp-diagram mt-32">
+        <div style="text-align:center; margin-bottom:24px;">
+          <h3>Qoder MCP 企业集成实例</h3>
+          <p style="font-size:13px; margin-top:8px;">通过MCP协议，Qoder已实际连通健耕内部的NetSuite ERP系统，实现财务数据智能化</p>
+        </div>
+        <div class="flex items-center" style="justify-content:center; gap:0; position:relative; padding:20px 0;">
+          <!-- Qoder Node -->
+          <div class="mcp-node">
+            <div class="mcp-node-icon active">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="6" y="6" width="16" height="16" rx="4" stroke="#00C8E0" stroke-width="1.5"/><path d="M11 14l2 2 4-4" stroke="#00C8E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+            <div class="mcp-node-label">Qoder AI</div>
+            <div class="mcp-node-desc">智能体平台</div>
+          </div>
+
+          <!-- Connector 1 -->
+          <div style="width:100px; height:2px; background:linear-gradient(90deg, var(--accent-cyan), var(--accent-violet)); position:relative; margin:0 8px; margin-bottom:36px;">
+            <div class="mcp-particle" style="animation-delay:0s;"></div>
+            <div class="mcp-particle" style="animation-delay:1.5s;"></div>
+          </div>
+
+          <!-- MCP Hub -->
+          <div class="mcp-node">
+            <div class="mcp-node-icon" style="border-color:var(--accent-violet); border-radius:50%; width:72px; height:72px;">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="8" stroke="#6C3CE0" stroke-width="1.5"/><path d="M16 4v4M16 24v4M4 16h4M24 16h4M7 7l3 3M22 22l3 3M7 25l3-3M22 10l3-3" stroke="#6C3CE0" stroke-width="1" stroke-linecap="round"/></svg>
+            </div>
+            <div class="mcp-node-label" style="color:var(--accent-violet);">MCP 协议层</div>
+            <div class="mcp-node-desc">标准化·安全·双向</div>
+          </div>
+
+          <!-- Connector 2 -->
+          <div style="width:100px; height:2px; background:linear-gradient(90deg, var(--accent-violet), var(--accent-green)); position:relative; margin:0 8px; margin-bottom:36px;">
+            <div class="mcp-particle" style="animation-delay:0.7s; background:var(--accent-violet);"></div>
+            <div class="mcp-particle" style="animation-delay:2.2s; background:var(--accent-green);"></div>
+          </div>
+
+          <!-- NetSuite Node -->
+          <div class="mcp-node">
+            <div class="mcp-node-icon" style="border-color:var(--accent-green);">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><rect x="5" y="8" width="18" height="12" rx="2" stroke="#00C853" stroke-width="1.5"/><path d="M9 12h4M9 15h7M9 18h5" stroke="#00C853" stroke-width="1" stroke-linecap="round"/></svg>
+            </div>
+            <div class="mcp-node-label">NetSuite ERP</div>
+            <div class="mcp-node-desc">财务·业务数据</div>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:16px;">
+          <span class="badge badge-green">✓ 已完成集成并投入使用</span>
+          <span style="font-size:12px; color:var(--text-muted); margin-left:12px;">场景：应付账款审核、财务BI分析、供应商数据同步</span>
+        </div>
+      </div>
+
+      <!-- MCP Real Case Demo -->
+      <div class="mcp-demo-showcase mt-32">
+        <div class="mcp-demo-header">
+          <div class="mcp-demo-badge">
+            <span class="live-dot"></span> 实战成果
+          </div>
+          <h3>NetSuite MCP 接口打通 — 采购申请自动化</h3>
+          <p>通过 Qoder MCP 协议连接 NetSuite RESTlet，实现采购申请(PR)与采购订单(PO)的全自动创建与关联</p>
+        </div>
+        <div class="mcp-demo-image" onclick="openDemoPopout()">
+          <img src="images/netsuite-mcp-demo.jpg" alt="NetSuite MCP 采购申请自动化实战截图" />
+          <div class="mcp-demo-overlay">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(0,200,224,0.15)" stroke="#00C8E0" stroke-width="2"/><path d="M20 16l12 8-12 8V16z" fill="#00C8E0"/></svg>
+            <span>点击查看大图</span>
+          </div>
+        </div>
+        <div class="mcp-demo-stats">
+          <div class="mcp-demo-stat">
+            <span class="stat-value">PR002317</span>
+            <span class="stat-label">采购申请号</span>
+          </div>
+          <div class="mcp-demo-stat">
+            <span class="stat-value">P0003932</span>
+            <span class="stat-label">采购订单号</span>
+          </div>
+          <div class="mcp-demo-stat">
+            <span class="stat-value">71行</span>
+            <span class="stat-label">自动处理明细</span>
+          </div>
+          <div class="mcp-demo-stat">
+            <span class="stat-value">¥313,874</span>
+            <span class="stat-label">总金额</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 2: Financial Intelligent Audit ========== -->
+  <section class="section" id="section-audit">
+    <div class="section-content">
+      <div class="section-label">// SECTION 02</div>
+      <div class="section-header">
+        <h2>财务智能审核 — 应付账款场景</h2>
+        <p>AI自动提取单据关键信息，智能比对数据一致性，高亮差异与风险点</p>
+      </div>
+
+      <!-- Status Bar -->
+      <div class="status-bar">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#00C8E0" stroke-width="1.5"/><path d="M8 5v3l2 2" stroke="#00C8E0" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span class="status-text">审核中... <strong>3/4</strong> 步骤完成</span>
+        <div class="status-progress">
+          <div class="status-progress-fill" style="width: 75%;"></div>
+        </div>
+      </div>
+
+      <!-- Audit Progress Flow -->
+      <div class="audit-flow">
+        <div class="audit-flow-node">
+          <div class="audit-flow-dot completed">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="audit-flow-label">单据接收</span>
+        </div>
+        <div class="audit-flow-line completed"></div>
+        <div class="audit-flow-node">
+          <div class="audit-flow-dot completed">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8l3 3 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="audit-flow-label">智能比对</span>
+        </div>
+        <div class="audit-flow-line completed"></div>
+        <div class="audit-flow-node">
+          <div class="audit-flow-dot active">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 3v4M7 9.5v.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <span class="audit-flow-label">差异提醒</span>
+        </div>
+        <div class="audit-flow-line active"></div>
+        <div class="audit-flow-node">
+          <div class="audit-flow-dot pending">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="2" fill="currentColor"/></svg>
+          </div>
+          <span class="audit-flow-label">人工确认</span>
+        </div>
+      </div>
+
+      <!-- Split Layout -->
+      <div class="audit-split">
+        <!-- Left: Document -->
+        <div class="audit-document">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <span class="badge badge-cyan">发票 #INV-2024-0891</span>
+            <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">[SOURCE: OA-SYSTEM]</span>
+          </div>
+          <div style="background:var(--bg-card); border-radius:8px; padding:20px; border:1px solid var(--border-default);">
+            <div style="font-size:18px; font-weight:700; text-align:center; margin-bottom:16px; color:var(--text-primary);">增值税专用发票</div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:13px;">
+              <div><span style="color:var(--text-muted);">供应商：</span><br><strong>苏州博腾医疗器械有限公司</strong></div>
+              <div><span style="color:var(--text-muted);">发票日期：</span><br><strong>2024-03-15</strong></div>
+              <div><span style="color:var(--text-muted);">发票金额：</span><br><strong style="font-family:var(--font-mono); font-size:16px; color:var(--accent-cyan);">¥ 284,500.00</strong></div>
+              <div><span style="color:var(--text-muted);">税率：</span><br><strong>13%</strong></div>
+              <div style="grid-column:1/3;"><span style="color:var(--text-muted);">商品明细：</span><br><strong>他克莫司胶囊原料药 × 500kg</strong></div>
+            </div>
+          </div>
+          <div style="margin-top:12px; background:var(--bg-card); border-radius:8px; padding:16px; border:1px solid var(--border-default);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+              <span class="badge badge-violet">合同 #CT-2024-056</span>
+            </div>
+            <div style="font-size:13px;">
+              <div style="margin-bottom:6px;"><span style="color:var(--text-muted);">合同金额：</span><strong style="font-family:var(--font-mono);">¥ 280,000.00</strong></div>
+              <div><span style="color:var(--text-muted);">约定单价：</span><strong style="font-family:var(--font-mono);">¥ 560.00/kg</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: AI Extracted Data -->
+        <div class="audit-data-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+            <h4 style="font-size:14px;">AI智能审核结果</h4>
+            <span class="live-indicator"><span class="live-dot"></span>PROCESSING</span>
+          </div>
+          <div class="audit-item match">
+            <span class="audit-item-label">供应商名称</span>
+            <span class="audit-item-value">苏州博腾医疗器械有限公司</span>
+            <span class="audit-item-status text-green">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8l3 3 5-5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="audit-item match">
+            <span class="audit-item-label">商品品名</span>
+            <span class="audit-item-value">他克莫司胶囊原料药</span>
+            <span class="audit-item-status text-green">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8l3 3 5-5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="audit-item match">
+            <span class="audit-item-label">发票日期</span>
+            <span class="audit-item-value">2024-03-15</span>
+            <span class="audit-item-status text-green">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8l3 3 5-5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+          <div class="audit-item mismatch">
+            <span class="audit-item-label">金额一致性</span>
+            <span class="audit-item-value text-red">发票 ¥284,500 ≠ 合同 ¥280,000</span>
+            <span class="audit-item-status">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#E8394A" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#E8394A" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+          <div class="audit-item mismatch">
+            <span class="audit-item-label">单价核验</span>
+            <span class="audit-item-value text-red">实际 ¥569/kg &gt; 合同 ¥560/kg</span>
+            <span class="audit-item-status">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6" stroke="#E8394A" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#E8394A" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+          <div class="audit-item match">
+            <span class="audit-item-label">税率</span>
+            <span class="audit-item-value">13% — 与合同一致</span>
+            <span class="audit-item-status text-green">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M4 8l3 3 5-5" stroke="#00C853" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Audit Log -->
+      <div class="audit-log" id="auditLog">
+        <div>&gt; <span class="log-info">[2024-03-16 09:32:14]</span> 开始审核 Bill #BILL-2024-0891</div>
+        <div>&gt; vendor_name_check: <span class="log-pass">PASSED ✓</span></div>
+        <div>&gt; item_description_check: <span class="log-pass">PASSED ✓</span></div>
+        <div>&gt; invoice_date_check: <span class="log-pass">PASSED ✓</span></div>
+        <div>&gt; amount_consistency_check: <span class="log-fail">FAILED ✗</span> — 差异 ¥4,500.00 (1.6%)</div>
+        <div>&gt; unit_price_check: <span class="log-fail">FAILED ✗</span> — 超出合同单价 ¥9.00/kg</div>
+        <div>&gt; tax_rate_check: <span class="log-pass">PASSED ✓</span></div>
+        <div>&gt; <span class="log-info">[ALERT]</span> 发现2项差异，已标记待人工确认</div>
+        <div>&gt; <span class="log-info">[SUGGESTION]</span> 建议核实是否存在补充协议或价格调整通知</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 3: Customer 360 Profile ========== -->
+  <section class="section" id="section-customer">
+    <div class="section-content">
+      <div class="section-label">// SECTION 03</div>
+      <div class="section-header">
+        <div class="flex justify-between items-center">
+          <div>
+            <h2>客户360°智能画像</h2>
+            <p>深入了解关键客户，追踪学术动态，洞察合作机会</p>
+          </div>
+          <span class="live-indicator"><span class="live-dot"></span>LIVE</span>
+        </div>
+      </div>
+
+      <div class="customer-profile">
+        <!-- Left: Profile Card -->
+        <div class="profile-card">
+          <div class="profile-avatar-ring">
+            <img src="images/xue-wujun.jpg" alt="薛武军" class="profile-avatar-img" />
+          </div>
+          <div class="profile-name">薛武军</div>
+          <div class="profile-title">肾脏病医院院长 · 主任医师 · 博士生导师</div>
+          <div class="profile-org">西安交通大学第一附属医院</div>
+          <div style="margin:16px 0;">
+            <span class="badge badge-cyan">器官移植</span>
+            <span class="badge badge-violet" style="margin-left:4px;">免疫抑制</span>
+          </div>
+          <div class="profile-stats">
+            <div class="profile-stat clickable" onclick="openProfileDetail('papers')">
+              <div class="profile-stat-value">127</div>
+              <div class="profile-stat-label">发表论文</div>
+              <div class="profile-stat-hint">点击查看 →</div>
+            </div>
+            <div class="profile-stat clickable" onclick="openProfileDetail('patents')">
+              <div class="profile-stat-value">23</div>
+              <div class="profile-stat-label">授权专利</div>
+              <div class="profile-stat-hint">点击查看 →</div>
+            </div>
+            <div class="profile-stat clickable" onclick="openProfileDetail('projects')">
+              <div class="profile-stat-value">8</div>
+              <div class="profile-stat-label">在研课题</div>
+              <div class="profile-stat-hint">点击查看 →</div>
+            </div>
+            <div class="profile-stat">
+              <div class="profile-stat-value">A+</div>
+              <div class="profile-stat-label">合作契合度</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Panel -->
+        <div class="customer-right">
+          <!-- Radar Chart -->
+          <div class="radar-container">
+            <div class="flex justify-between items-center mb-16">
+              <h4 style="font-size:14px;">合作契合度分析</h4>
+              <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">SCORE: 92/100</span>
+            </div>
+            <canvas id="radarChart" width="400" height="220"></canvas>
+          </div>
+
+          <!-- Timeline -->
+          <div class="timeline">
+            <div class="flex justify-between items-center mb-16">
+              <h4 style="font-size:14px;">学术动态追踪</h4>
+              <span style="font-family:var(--font-mono); font-size:11px; color:var(--text-muted);">最近6个月</span>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">2024-03-08</div>
+                <div class="timeline-title">发表论文《他克莫司个体化给药策略在肾移植术后的应用研究》<span class="timeline-tag new">NEW</span></div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">2024-02-20</div>
+                <div class="timeline-title">获批国家自然科学基金面上项目：移植肾慢性排斥反应的免疫调控机制<span class="timeline-tag new">NEW</span></div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">2024-01-15</div>
+                <div class="timeline-title">出席"第十二届中国器官移植大会"并作主题报告</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">2023-12-05</div>
+                <div class="timeline-title">新增专利公开：一种肾脏体外灌注保存液配方（ZL2023XXXXXXX）</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">2023-11-18</div>
+                <div class="timeline-title">合作论文《机器灌注对边缘供肾质量评估的多中心研究》被Transplantation收录</div>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-date">2023-10-22</div>
+                <div class="timeline-title">受邀参加阿斯利康免疫抑制剂学术研讨会（西安站）</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Insight Box -->
+      <div class="ai-insight-box">
+        <h4>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L10 6H14L11 9L12 13L8 11L4 13L5 9L2 6H6L8 2Z" fill="#00C8E0" fill-opacity="0.3" stroke="#00C8E0" stroke-width="1"/></svg>
+          AI合作洞察
+        </h4>
+        <p>基于薛武军教授近期研究动态分析，以下合作方向契合度最高：</p>
+        <p style="margin-top:8px;"><strong style="color:var(--accent-cyan);">1. 机器灌注领域：</strong>薛教授团队在体外灌注保存领域持续深耕，其最新专利与健耕的器官灌注设备产品线高度契合，建议推动联合临床研究。</p>
+        <p style="margin-top:6px;"><strong style="color:var(--accent-cyan);">2. 他克莫司个体化用药：</strong>其研究方向与健耕的他克莫司胶囊仿制药形成天然协同，可探索"药物+诊断"联合方案。</p>
+        <p style="margin-top:6px;"><strong style="color:var(--accent-violet);">建议行动：</strong>安排商务拜访，携带机器灌注产品新资料，同步邀请参加健耕2024年Q2学术沙龙。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 4: Drug Bidding Price Prediction ========== -->
+  <section class="section" id="section-pricing">
+    <div class="section-content">
+      <div class="section-label">// SECTION 04</div>
+      <div class="section-header">
+        <h2>药品竞标价格预测模型</h2>
+        <p>基于历史集采数据构建价格预测模型，辅助"他克莫司胶囊"仿制药科学定价</p>
+      </div>
+
+      <!-- Simulation Banner -->
+      <div class="simulation-banner">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2L16 16H2L9 2Z" fill="none" stroke="#8B6914" stroke-width="1.5"/><path d="M9 7v4M9 13v.5" stroke="#8B6914" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span>⚠ SIMULATION MODE — 基于模拟数据的预测演示，实际数据将后续校准。当前为Demo模型框架展示。</span>
+      </div>
+
+      <div class="pricing-layout">
+        <!-- Left: Parameter Panel -->
+        <div class="param-panel">
+          <h4 style="font-size:14px; margin-bottom:20px;">参数调节</h4>
+          <div class="param-group">
+            <div class="param-label">
+              <span>参与企业数</span>
+              <span class="param-value" id="paramCompetitors">12</span>
+            </div>
+            <input type="range" class="param-slider" id="sliderCompetitors" min="6" max="20" value="12">
+          </div>
+          <div class="param-group">
+            <div class="param-label">
+              <span>中标名额</span>
+              <span class="param-value" id="paramWinners">7</span>
+            </div>
+            <input type="range" class="param-slider" id="sliderWinners" min="3" max="10" value="7">
+          </div>
+          <div class="param-group">
+            <div class="param-label">
+              <span>上轮最低中标价 (元)</span>
+              <span class="param-value" id="paramMinPrice">2.35</span>
+            </div>
+            <input type="range" class="param-slider" id="sliderMinPrice" min="150" max="400" value="235">
+          </div>
+          <div class="param-group">
+            <div class="param-label">
+              <span>价格降幅预期 (%)</span>
+              <span class="param-value" id="paramDrop">15</span>
+            </div>
+            <input type="range" class="param-slider" id="sliderDrop" min="5" max="40" value="15">
+          </div>
+          <div class="param-group">
+            <div class="param-label">
+              <span>模拟次数</span>
+              <span class="param-value" id="paramIterations">1000</span>
+            </div>
+            <input type="range" class="param-slider" id="sliderIterations" min="100" max="5000" value="1000" step="100">
+          </div>
+          <button class="btn btn-primary" style="width:100%; margin-top:12px;" id="btnRunSimulation">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 2l9 5-9 5V2z" fill="currentColor"/></svg>
+            运行模拟
+          </button>
+        </div>
+
+        <!-- Center: Chart -->
+        <div class="chart-container">
+          <div class="flex justify-between items-center mb-16">
+            <h4 style="font-size:14px;">竞标价格分布图</h4>
+            <div>
+              <span class="badge badge-green" style="font-size:10px;">● 中标区</span>
+              <span class="badge badge-red" style="font-size:10px; margin-left:4px;">● 淘汰区</span>
+            </div>
+          </div>
+          <div class="chart-wrapper">
+            <canvas id="pricingChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Right: Result Panel -->
+        <div class="result-panel">
+          <h4 style="font-size:14px; margin-bottom:16px;">预测结果</h4>
+          <div class="result-price">
+            <div class="result-price-label">建议定价区间</div>
+            <div class="result-price-value" id="resultPrice">¥1.98 - 2.15</div>
+            <div class="result-price-unit">元/粒</div>
+          </div>
+          
+          <!-- Probability Ring -->
+          <div class="probability-ring">
+            <div class="ring-chart">
+              <svg width="100" height="100" viewBox="0 0 100 100">
+                <circle class="ring-bg" cx="50" cy="50" r="40"/>
+                <circle class="ring-fill" cx="50" cy="50" r="40" 
+                  stroke-dasharray="251.3" 
+                  stroke-dashoffset="62.8"
+                  id="ringFill"/>
+              </svg>
+              <span class="ring-value" id="ringValue">75%</span>
+            </div>
+            <span class="ring-label">预测中标概率</span>
+          </div>
+
+          <!-- Mini Competitor Table -->
+          <table class="mini-table">
+            <thead>
+              <tr>
+                <th>厂商</th>
+                <th>预测报价</th>
+              </tr>
+            </thead>
+            <tbody id="competitorTableBody">
+              <tr><td>华海药业</td><td>¥1.92</td></tr>
+              <tr><td>正大天晴</td><td>¥2.05</td></tr>
+              <tr><td style="color:var(--accent-cyan); font-weight:600;">健耕医药 ⬟</td><td style="color:var(--accent-cyan);">¥2.08</td></tr>
+              <tr><td>中美华东</td><td>¥2.18</td></tr>
+              <tr><td>石药集团</td><td>¥2.25</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Algorithm Log -->
+      <div class="algo-log" id="algoLog">
+        <div>&gt; <span class="log-info">[INIT]</span> Loading historical bidding data...</div>
+        <div>&gt; <span class="log-info">[CONFIG]</span> competitors=12, winners=7, iterations=1000</div>
+        <div>&gt; Running Monte Carlo simulation... <span class="log-pass">Iteration 1000/1000</span></div>
+        <div>&gt; Price distribution: μ=2.12, σ=0.18</div>
+        <div>&gt; Winning threshold (P95): ¥2.20</div>
+        <div>&gt; <span class="log-pass">[RESULT]</span> Recommended price range: ¥1.98 - ¥2.15</div>
+        <div>&gt; <span class="log-pass">[RESULT]</span> Win probability at ¥2.08: 75.3%</div>
+        <div>&gt; <span class="log-info">[NOTE]</span> Model based on simulated data. Calibrate with actual historical records.</div>
+      </div>
+
+      <!-- Real-time Price Crawl Panel -->
+      <div class="crawl-panel">
+        <div class="crawl-header">
+          <div class="crawl-title">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="6" stroke="#00C8E0" stroke-width="1.5"/>
+              <path d="M8 4v4l3 2" stroke="#00C8E0" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>实时价格抓取</span>
+            <span class="crawl-status" id="crawlStatus"><span style="color:var(--text-muted);">● 待启动</span></span>
+          </div>
+          <div class="crawl-controls">
+            <span class="crawl-time" id="crawlTime">--:--:--</span>
+            <button class="btn btn-primary btn-sm" id="crawlToggle">开始抓取</button>
+          </div>
+        </div>
+        <div class="crawl-sources">
+          <span class="source-tag">药智网</span>
+          <span class="source-tag">米内网</span>
+          <span class="source-tag">国家医保局</span>
+          <span class="source-tag">阳光采购网</span>
+          <span class="source-tag">广东药交中心</span>
+        </div>
+        <div class="crawl-log" id="crawlLog">
+          <div class="crawl-placeholder">&gt; 点击"开始抓取"启动实时价格监控，或等待页面滚动自动启动...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SECTION 5: R&D Knowledge Base ========== -->
+  <section class="section" id="section-rdkb">
+    <div class="section-content">
+      <div class="section-label">// SECTION 05</div>
+      <div class="section-header">
+        <div class="flex justify-between items-center">
+          <div>
+            <h2>研发知识库 — 本地化AI文档方案</h2>
+            <p>器械研发文档不出内网，本地GPU部署大模型 + RAG检索，安全合规的智能文档助手</p>
+          </div>
+          <span class="badge badge-green" style="font-size:11px; padding:6px 12px;">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="vertical-align:-1px; margin-right:4px;"><path d="M6 1v2M6 9v2M1 6h2M9 6h2" stroke="#00C853" stroke-width="1.5" stroke-linecap="round"/><circle cx="6" cy="6" r="2" fill="#00C853" fill-opacity="0.3"/></svg>
+            全部数据本地存储
+          </span>
+        </div>
+      </div>
+
+      <!-- Architecture Diagram -->
+      <div class="rdkb-architecture">
+        <h4 style="text-align:center; margin-bottom:24px; font-size:15px;">本地化部署架构</h4>
+        <div class="arch-flow">
+          <div class="arch-node arch-node-docs">
+            <div class="arch-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><path d="M8 4h10l6 6v18H8V4z" stroke="#5A6D80" stroke-width="1.5"/><path d="M18 4v6h6" stroke="#5A6D80" stroke-width="1.5"/><path d="M12 16h8M12 20h6" stroke="#5A6D80" stroke-width="1" stroke-linecap="round"/></svg>
+            </div>
+            <div class="arch-label">研发文档</div>
+            <div class="arch-desc">设计规范 / 验证报告<br>注册材料 / SOP</div>
+          </div>
+
+          <div class="arch-arrow">
+            <svg width="40" height="20" viewBox="0 0 40 20"><path d="M0 10h32M26 5l6 5-6 5" stroke="var(--accent-cyan)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+            <span>解析分块</span>
+          </div>
+
+          <div class="arch-node arch-node-vector">
+            <div class="arch-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><circle cx="10" cy="10" r="3" stroke="#6C3CE0" stroke-width="1.5"/><circle cx="22" cy="10" r="3" stroke="#6C3CE0" stroke-width="1.5"/><circle cx="16" cy="22" r="3" stroke="#6C3CE0" stroke-width="1.5"/><path d="M12 11l3 9M20 11l-3 9M13 10h6" stroke="#6C3CE0" stroke-width="1" stroke-dasharray="2 2"/></svg>
+            </div>
+            <div class="arch-label">向量数据库</div>
+            <div class="arch-desc">Milvus / Chroma<br>文档Embedding索引</div>
+          </div>
+
+          <div class="arch-arrow">
+            <svg width="40" height="20" viewBox="0 0 40 20"><path d="M0 10h32M26 5l6 5-6 5" stroke="var(--accent-violet)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+            <span>语义检索</span>
+          </div>
+
+          <div class="arch-node arch-node-llm">
+            <div class="arch-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="6" y="6" width="20" height="20" rx="4" stroke="#00C8E0" stroke-width="1.5"/><path d="M11 16h10M16 11v10" stroke="#00C8E0" stroke-width="1.5" stroke-linecap="round"/><circle cx="11" cy="11" r="1.5" fill="#00C8E0"/><circle cx="21" cy="21" r="1.5" fill="#00C8E0"/></svg>
+            </div>
+            <div class="arch-label">本地大模型</div>
+            <div class="arch-desc">Qwen2.5-72B<br>Ollama / vLLM</div>
+          </div>
+
+          <div class="arch-arrow">
+            <svg width="40" height="20" viewBox="0 0 40 20"><path d="M0 10h32M26 5l6 5-6 5" stroke="var(--accent-green)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
+            <span>生成回答</span>
+          </div>
+
+          <div class="arch-node arch-node-ui">
+            <div class="arch-icon">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none"><rect x="4" y="6" width="24" height="18" rx="3" stroke="#00C853" stroke-width="1.5"/><path d="M4 12h24" stroke="#00C853" stroke-width="1"/><circle cx="8" cy="9" r="1" fill="#E8394A"/><circle cx="12" cy="9" r="1" fill="#FFB020"/><circle cx="16" cy="9" r="1" fill="#00C853"/></svg>
+            </div>
+            <div class="arch-label">知识库界面</div>
+            <div class="arch-desc">Dify / FastGPT<br>Web端问答交互</div>
+          </div>
+        </div>
+
+        <div class="arch-infra">
+          <span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:-2px;"><rect x="2" y="4" width="10" height="8" rx="1" stroke="#8FA0B4" stroke-width="1.2"/><path d="M5 7h4M5 9h2" stroke="#8FA0B4" stroke-width="1" stroke-linecap="round"/></svg>
+            本地GPU服务器 (NVIDIA A100/4090)
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:-2px;"><circle cx="7" cy="7" r="5" stroke="#8FA0B4" stroke-width="1.2"/><path d="M7 4v3l2 1.5" stroke="#8FA0B4" stroke-width="1" stroke-linecap="round"/></svg>
+            数据全程不出企业内网
+          </span>
+          <span>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="vertical-align:-2px;"><path d="M7 2l5 3v4l-5 3-5-3V5l5-3z" stroke="#8FA0B4" stroke-width="1.2"/></svg>
+            Docker容器化部署，运维简单
+          </span>
+        </div>
+      </div>
+
+      <!-- Two-column: Department Docs + Q&A Demo -->
+      <div class="rdkb-layout">
+        <!-- Left: Department document list -->
+        <div class="rdkb-docs-panel">
+          <h4 style="font-size:14px; margin-bottom:16px;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="vertical-align:-2px; margin-right:6px;"><path d="M2 4h12M2 8h12M2 12h8" stroke="#00C8E0" stroke-width="1.5" stroke-linecap="round"/></svg>
+            部门文档库
+          </h4>
+          <div class="rdkb-dept" data-count="1,247">
+            <div class="rdkb-dept-icon">🔬</div>
+            <div class="rdkb-dept-info">
+              <div class="rdkb-dept-name">器械研发部</div>
+              <div class="rdkb-dept-detail">设计输入/输出、DHF、验证方案</div>
+            </div>
+            <span class="rdkb-dept-count">1,247 份</span>
+          </div>
+          <div class="rdkb-dept" data-count="832">
+            <div class="rdkb-dept-icon">📋</div>
+            <div class="rdkb-dept-info">
+              <div class="rdkb-dept-name">注册法规部</div>
+              <div class="rdkb-dept-detail">注册申报材料、法规解读、审评反馈</div>
+            </div>
+            <span class="rdkb-dept-count">832 份</span>
+          </div>
+          <div class="rdkb-dept" data-count="568">
+            <div class="rdkb-dept-icon">🧪</div>
+            <div class="rdkb-dept-info">
+              <div class="rdkb-dept-name">质量管理部</div>
+              <div class="rdkb-dept-detail">QMS体系文件、CAPA、内审报告</div>
+            </div>
+            <span class="rdkb-dept-count">568 份</span>
+          </div>
+          <div class="rdkb-dept" data-count="423">
+            <div class="rdkb-dept-icon">⚙️</div>
+            <div class="rdkb-dept-info">
+              <div class="rdkb-dept-name">生产工艺部</div>
+              <div class="rdkb-dept-detail">工艺规程、设备SOP、批记录模板</div>
+            </div>
+            <span class="rdkb-dept-count">423 份</span>
+          </div>
+          <div class="rdkb-dept" data-count="315">
+            <div class="rdkb-dept-icon">🧬</div>
+            <div class="rdkb-dept-info">
+              <div class="rdkb-dept-name">临床医学部</div>
+              <div class="rdkb-dept-detail">临床方案、CRF表单、随访数据</div>
+            </div>
+            <span class="rdkb-dept-count">315 份</span>
+          </div>
+
+          <div class="rdkb-total">
+            <span>总文档量</span>
+            <strong>3,385 份</strong>
+          </div>
+        </div>
+
+        <!-- Right: Q&A Demo -->
+        <div class="rdkb-qa-panel">
+          <div class="rdkb-qa-header">
+            <h4 style="font-size:14px;">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="vertical-align:-2px; margin-right:6px;"><rect x="2" y="2" width="12" height="12" rx="3" stroke="#00C8E0" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="#00C8E0"/></svg>
+              文档问答演示
+            </h4>
+            <span class="badge badge-cyan" style="font-size:10px;">本地模型 · Qwen2.5-72B</span>
+          </div>
+          <div class="rdkb-qa-messages" id="rdkbMessages">
+            <div class="rdkb-msg bot">
+              <div class="rdkb-msg-avatar">AI</div>
+              <div class="rdkb-msg-content">您好！我是研发知识库AI助手，可以帮您检索器械研发文档、法规材料等内部资料。所有数据在本地处理，不会上传到外部服务器。</div>
+            </div>
+          </div>
+          <div class="rdkb-qa-suggestions" id="rdkbSuggestions">
+            <button class="rdkb-suggest-btn" onclick="askRdkb('肾脏灌注机的设计输入有哪些关键性能指标？')">肾脏灌注机设计输入指标</button>
+            <button class="rdkb-suggest-btn" onclick="askRdkb('低温保存液的生物相容性验证报告在哪里？')">低温保存液验证报告</button>
+            <button class="rdkb-suggest-btn" onclick="askRdkb('器械注册申报需要准备哪些临床评价资料？')">注册申报临床评价资料</button>
+          </div>
+          <div class="rdkb-qa-input">
+            <input type="text" placeholder="询问研发文档相关问题..." id="rdkbInput" onkeydown="if(event.key==='Enter')askRdkb()">
+            <button class="rdkb-qa-send" onclick="askRdkb()">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l12-5-5 12-2-5-5-2z" fill="currentColor"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Key advantages -->
+      <div class="rdkb-advantages">
+        <div class="rdkb-adv-item">
+          <div class="rdkb-adv-icon">🔒</div>
+          <div class="rdkb-adv-title">数据零泄露</div>
+          <div class="rdkb-adv-desc">全部运算在本地GPU完成，文档不上云、不外传</div>
+        </div>
+        <div class="rdkb-adv-item">
+          <div class="rdkb-adv-icon">⚡</div>
+          <div class="rdkb-adv-title">秒级检索</div>
+          <div class="rdkb-adv-desc">向量语义搜索，3000+文档中 &lt;2秒定位答案</div>
+        </div>
+        <div class="rdkb-adv-item">
+          <div class="rdkb-adv-icon">🧠</div>
+          <div class="rdkb-adv-title">专业理解</div>
+          <div class="rdkb-adv-desc">医疗器械领域微调，准确理解技术术语与法规条文</div>
+        </div>
+        <div class="rdkb-adv-item">
+          <div class="rdkb-adv-icon">📑</div>
+          <div class="rdkb-adv-title">多格式支持</div>
+          <div class="rdkb-adv-desc">PDF/Word/Excel/CAD图纸/扫描件OCR全覆盖</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== Footer ========== -->
+  <footer class="footer">
+    <p>&copy; 2024 上海健耕医药科技股份有限公司 · Gencode Intelligence 智能工作台</p>
+    <p class="powered-by">Powered by Qoder MCP</p>
+  </footer>
+
+  <!-- ========== Chat Widget ========== -->
+  <button class="chat-fab" id="chatFab" aria-label="打开AI助手">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+    </svg>
+  </button>
+
+  <div class="chat-window" id="chatWindow">
+    <div class="chat-header">
+      <h4>
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="3" y="3" width="10" height="10" rx="3" stroke="#00C8E0" stroke-width="1.5"/><circle cx="8" cy="8" r="2" fill="#00C8E0"/></svg>
+        AI知识助手
+      </h4>
+      <button class="close-btn" id="chatClose">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="chat-msg bot">您好！我是健耕医药AI知识助手。我可以帮您查询公司产品信息、财务数据、客户资料等。请问有什么可以帮您？</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" class="chat-input" id="chatInput" placeholder="输入您的问题...">
+      <button class="chat-send" id="chatSend">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8l12-5-5 12-2-5-5-2z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Explain Modal -->
+  <div class="explain-modal-overlay" id="explainOverlay" onclick="closeExplain(event)">
+    <div class="explain-modal">
+      <button class="explain-modal-close" onclick="document.getElementById('explainOverlay').classList.remove('open')">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3l8 8M11 3l-8 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </button>
+      <div class="explain-modal-title" id="explainTitle"></div>
+      <div class="explain-modal-subtitle" id="explainSubtitle"></div>
+      <div class="explain-modal-body" id="explainBody"></div>
+    </div>
+  </div>
+
+  <script>
+    const explainData = {
+      mcp: {
+        title: 'MCP — 模型上下文协议',
+        subtitle: 'Model Context Protocol',
+        body: `<strong>一句话解释：</strong>MCP就是AI世界的"万能插头标准"。
+        <div class="analogy">
+          <strong>类比：</strong>就像USB-C统一了手机充电口一样，MCP统一了AI连接各类软件系统的方式。有了这个标准，AI不需要为每个系统（如财务系统、OA系统、CRM系统）单独开发连接器，一个标准接口就能连通所有系统。
+        </div>
+        <p style="margin-top:12px;"><strong>对健耕的意义：</strong>通过MCP，我们的AI助手可以安全地读取NetSuite里的财务数据、查询OA中的审批流程，而不需要IT团队为每个场景逐一开发接口，大幅降低集成成本和时间。</p>`
+      },
+      quest: {
+        title: 'Quest Mode — 自主任务模式',
+        subtitle: 'Qoder独有功能',
+        body: `<strong>一句话解释：</strong>像给一个能干的下属下达任务书，AI看完任务书后自己独立完成，而不需要你一直盯着。
+        <div class="analogy">
+          <strong>类比：</strong>普通AI像一个需要你每句话都指导的实习生——你说一句，它做一句。Quest Mode下的AI像一个资深员工——你写一份需求说明书给它，它自己规划步骤、独立完成、遇到问题才找你确认。
+        </div>
+        <p style="margin-top:12px;"><strong>对健耕的意义：</strong>IT团队可以用自然语言写一份"任务书"（比如：把NetSuite里上月的应付账款数据导出，按供应商分类汇总），AI就会自主完成整个流程，而不需要程序员一步步引导。</p>`
+      },
+      memory: {
+        title: 'Memory — 持久记忆能力',
+        subtitle: 'Qoder独有功能',
+        body: `<strong>一句话解释：</strong>AI能"记住"之前所有对话内容和项目上下文，不会每次都从头开始。
+        <div class="analogy">
+          <strong>类比：</strong>普通AI就像一个每天换一个的临时工——每次见面都要从头介绍公司情况。有Memory的AI像一个长期在职的员工——它记得公司的规章制度、业务流程、历史项目，不需要你反复解释背景信息。
+        </div>
+        <p style="margin-top:12px;"><strong>对健耕的意义：</strong>AI会记住健耕的产品线（器官灌注、他克莫司等）、内部流程、组织架构等信息，后续每次提问都不需要重新解释背景，效率显著提升。</p>`
+      },
+      routing: {
+        title: '自动模型路由',
+        subtitle: 'Automatic Model Routing',
+        body: `<strong>一句话解释：</strong>AI自动判断任务难度，用最合适的"大脑"来完成，简单的任务用轻量模型（省钱快速），复杂的任务用高级模型（精准深度）。
+        <div class="analogy">
+          <strong>类比：</strong>就像公司里的任务分配——不是所有事情都需要总监亲自处理。日常报表用助理就能搞定（便宜快速），涉及战略决策的才需要总监出马（贵但精准）。Qoder自动判断每个任务该用哪个级别的AI。
+        </div>
+        <p style="margin-top:12px;"><strong>对健耕的意义：</strong>自动平衡成本与质量——日常问答用轻量模型省预算，复杂数据分析用高级模型保效果，无需人工选择。</p>`
+      },
+      context: {
+        title: '200K上下文窗口',
+        subtitle: '200K Context Window',
+        body: `<strong>一句话解释：</strong>AI一次性能"看"的文字量，200K约等于一次性读完一本40万字的小说。
+        <div class="analogy">
+          <strong>类比：</strong>想象一个人的"工作台"大小——普通AI的工作台只能放几页纸，200K上下文的AI工作台可以同时摊开一整本厚书，所以它能同时分析和记住很多文件内容。
+        </div>
+        <p style="margin-top:12px;"><strong>实际意义：</strong>可以一次性给AI喂入多份合同、发票、账单进行比对分析，而不需要拆分成多次小对话。</p>`
+      },
+      ide: {
+        title: 'IDE — 集成开发环境',
+        subtitle: 'Integrated Development Environment',
+        body: `<strong>一句话解释：</strong>程序员写代码时用的专业工具软件，类似于设计师用PS、财务用Excel。
+        <div class="analogy">
+          <strong>类比：</strong>如果写代码比作写文章，IDE就是一个超级Word——不仅能编辑文字，还能自动检查语法错误、一键美化格式、直接预览最终效果。Qoder把AI直接内嵌在这个工具里，程序员边写代码边问AI，效率极高。
+        </div>
+        <p style="margin-top:12px;"><strong>对健耕的意义：</strong>有IDE意味着IT团队可以在日常工作工具里直接使用AI辅助，不需要来回切换窗口，开发效率显著提升。</p>`
+      },
+      autonomous: {
+        title: '自主任务执行',
+        subtitle: 'Autonomous Task Execution',
+        body: `<strong>一句话解释：</strong>AI能否在没有人类实时监督的情况下，独立规划并完成一个多步骤任务。
+        <div class="analogy">
+          <strong>类比：</strong>区别在于"遥控汽车"和"自动驾驶"。需要持续交互引导的AI就像遥控汽车——方向盘始终在你手里；有自主执行能力的AI像自动驾驶——你设定目的地，它自己规划路线、自主到达。
+        </div>
+        <p style="margin-top:12px;"><strong>对健耕的意义：</strong>Qoder的Quest Mode可以接受"自动生成月度财务对比报告"这样的完整任务，自行完成数据拉取→分析→生成报告的全流程，释放人力。</p>`
+      }
+    };
+
+    function showExplain(key) {
+      const data = explainData[key];
+      if (!data) return;
+      document.getElementById('explainTitle').textContent = data.title;
+      document.getElementById('explainSubtitle').textContent = data.subtitle;
+      document.getElementById('explainBody').innerHTML = data.body;
+      document.getElementById('explainOverlay').classList.add('open');
+    }
+
+    function closeExplain(event) {
+      if (event.target === document.getElementById('explainOverlay')) {
+        document.getElementById('explainOverlay').classList.remove('open');
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.getElementById('explainOverlay').classList.remove('open');
+        document.getElementById('demoPopout').classList.remove('open');
+        document.getElementById('profileDetailOverlay').classList.remove('open');
+      }
+    });
+
+    function openDemoPopout() {
+      var el = document.getElementById('demoPopout');
+      if (el) el.classList.add('open');
+    }
+
+    function closeDemoPopout(event) {
+      document.getElementById('demoPopout').classList.remove('open');
+    }
+
+    // Profile detail popout data
+    var profileDetails = {
+      papers: {
+        title: '发表论文',
+        count: '共 127 篇（近5年代表性论文）',
+        items: [
+          { year: '2024', title: '他克莫司个体化给药策略在肾移植术后的应用研究', journal: 'Chinese Journal of Organ Transplantation', impact: 'IF 3.2', tag: '第一作者' },
+          { year: '2024', title: 'Machine perfusion assessment of marginal donor kidneys: a multicenter study', journal: 'Transplantation', impact: 'IF 5.8', tag: '通讯作者' },
+          { year: '2023', title: '移植肾慢性排斥反应中Treg细胞亚群的动态变化', journal: '中华器官移植杂志', impact: 'IF 2.8', tag: '通讯作者' },
+          { year: '2023', title: 'Donor-derived cell-free DNA as a biomarker for kidney allograft rejection', journal: 'American Journal of Transplantation', impact: 'IF 8.9', tag: '共同第一' },
+          { year: '2023', title: '低温机器灌注对DCD供肾质量评估的多中心前瞻性研究', journal: 'Kidney International', impact: 'IF 18.9', tag: '通讯作者' },
+          { year: '2022', title: '肾移植术后BK病毒感染的免疫学监测与干预策略', journal: '中华肾脏病杂志', impact: 'IF 2.1', tag: '第一作者' },
+          { year: '2022', title: 'Long-term outcomes of ABO-incompatible kidney transplantation', journal: 'Transplant International', impact: 'IF 4.2', tag: '通讯作者' },
+          { year: '2022', title: '免疫抑制剂减量方案对移植肾长期存活的影响', journal: '中华器官移植杂志', impact: 'IF 2.8', tag: '第一作者' },
+          { year: '2021', title: 'Normothermic machine perfusion in kidney transplantation: current evidence', journal: 'Transplantation Reviews', impact: 'IF 4.5', tag: '通讯作者' },
+          { year: '2021', title: '新型免疫抑制方案在高致敏肾移植受者中的应用', journal: '中国科学:生命科学', impact: 'IF 3.6', tag: '通讯作者' },
+        ]
+      },
+      patents: {
+        title: '授权专利',
+        count: '共 23 项（部分展示）',
+        items: [
+          { year: '2024', title: '一种肾脏体外灌注保存液配方', id: 'ZL 2023 1 0892456.7', type: '发明专利', tag: '已授权' },
+          { year: '2023', title: '基于机器学习的供肾质量评估系统及方法', id: 'ZL 2022 1 1234567.8', type: '发明专利', tag: '已授权' },
+          { year: '2023', title: '一种便携式肾脏低温机器灌注装置', id: 'ZL 2022 2 0987654.3', type: '实用新型', tag: '已授权' },
+          { year: '2022', title: '免疫抑制剂血药浓度智能监测与预警系统', id: 'ZL 2021 1 0567890.1', type: '发明专利', tag: '已授权' },
+          { year: '2022', title: '移植肾排斥反应早期诊断的生物标志物组合', id: 'ZL 2021 1 0345678.9', type: '发明专利', tag: '已授权' },
+          { year: '2021', title: '一种器官运输专用保温容器', id: 'ZL 2020 2 1234567.0', type: '实用新型', tag: '已授权' },
+          { year: '2021', title: '基于cfDNA的移植物损伤无创检测方法', id: 'ZL 2020 1 0876543.2', type: '发明专利', tag: '已授权' },
+          { year: '2020', title: '一种改良的肾脏灌注液及其制备方法', id: 'ZL 2019 1 0654321.0', type: '发明专利', tag: '已授权' },
+        ]
+      },
+      projects: {
+        title: '在研课题',
+        count: '共 8 项（当前在研）',
+        items: [
+          { year: '2024-2027', title: '移植肾慢性排斥反应的免疫调控机制研究', id: '国家自然科学基金面上项目 (82370792)', type: '国家级', tag: '¥55万' },
+          { year: '2023-2026', title: '基于机器灌注的边缘供肾修复与质量评估关键技术', id: '国家重点研发计划子课题', type: '国家级', tag: '¥180万' },
+          { year: '2023-2025', title: '新型免疫抑制方案在肾移植术后的多中心RCT研究', id: '陕西省重点研发计划 (2023-ZDLSF-42)', type: '省部级', tag: '¥80万' },
+          { year: '2023-2025', title: 'Donor-derived cfDNA在移植肾监测中的临床转化', id: '西安交大临床转化基金', type: '校级重点', tag: '¥30万' },
+          { year: '2022-2025', title: '体外膜肺氧合(ECMO)供体管理与器官质量优化', id: '国家自然科学基金面上项目 (82170769)', type: '国家级', tag: '¥55万' },
+          { year: '2022-2024', title: '肾移植术后个体化免疫抑制的药物基因组学研究', id: '陕西省自然科学基金 (2022JM-498)', type: '省部级', tag: '¥15万' },
+          { year: '2024-2026', title: '人工智能辅助移植肾病理诊断系统开发', id: '健耕医药-西交合作项目', type: '企业合作', tag: '¥120万' },
+          { year: '2024-2025', title: '低温机器灌注设备国产化关键技术研发', id: '健耕医药联合攻关 (JG-2024-KJ-003)', type: '企业合作', tag: '¥200万' },
+        ]
+      }
+    };
+
+    function openProfileDetail(key) {
+      var data = profileDetails[key];
+      if (!data) return;
+      document.getElementById('profileDetailTitle').textContent = data.title;
+      document.getElementById('profileDetailCount').textContent = data.count;
+      var html = '';
+      data.items.forEach(function(item) {
+        html += '<div class="pd-item">';
+        html += '<div class="pd-item-year">' + item.year + '</div>';
+        html += '<div class="pd-item-main">';
+        html += '<div class="pd-item-title">' + item.title + '</div>';
+        html += '<div class="pd-item-meta">';
+        if (item.journal) html += '<span>' + item.journal + '</span>';
+        if (item.impact) html += '<span class="pd-impact">' + item.impact + '</span>';
+        if (item.id) html += '<span class="pd-id">' + item.id + '</span>';
+        if (item.type) html += '<span>' + item.type + '</span>';
+        html += '</div></div>';
+        html += '<div class="pd-item-tag">' + item.tag + '</div>';
+        html += '</div>';
+      });
+      document.getElementById('profileDetailBody').innerHTML = html;
+      document.getElementById('profileDetailOverlay').classList.add('open');
+    }
+
+    function closeProfileDetail() {
+      document.getElementById('profileDetailOverlay').classList.remove('open');
+    }
+  </script>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/section1.js"></script>
+  <script src="js/section2.js"></script>
+  <script src="js/section3.js"></script>
+  <script src="js/section4.js"></script>
+  <script src="js/section5.js"></script>
+  <script src="js/chat.js"></script>
+
+  <!-- Demo Popout Modal (body level for proper fixed positioning) -->
+  <div class="demo-popout-overlay" id="demoPopout" onclick="closeDemoPopout(event)">
+    <div class="demo-popout-content" onclick="event.stopPropagation()">
+      <button class="demo-popout-close" onclick="document.getElementById('demoPopout').classList.remove('open')">&times;</button>
+      <img src="images/netsuite-mcp-demo.jpg" alt="NetSuite MCP 采购申请自动化" />
+      <div class="demo-popout-caption">
+        <strong>Qoder MCP × NetSuite RESTlet</strong> — 携程报销数据 → 自动生成采购申请(PR002317) + 采购订单(P0003932)，71行明细全自动匹配，PR+PO已自动链接
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Detail Popout Modal -->
+  <div class="profile-detail-overlay" id="profileDetailOverlay" onclick="closeProfileDetail()">
+    <div class="profile-detail-modal" onclick="event.stopPropagation()">
+      <button class="profile-detail-close" onclick="closeProfileDetail()">&times;</button>
+      <div class="profile-detail-header">
+        <h3 id="profileDetailTitle"></h3>
+        <span class="profile-detail-count" id="profileDetailCount"></span>
+      </div>
+      <div class="profile-detail-body" id="profileDetailBody"></div>
+    </div>
+  </div>
+</body>
+</html>
