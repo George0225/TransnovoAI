@@ -1184,7 +1184,14 @@
 
     function openDemoPopout() {
       var el = document.getElementById('demoPopout');
-      if (el) el.classList.add('open');
+      if (!el) return;
+      var img = el.querySelector('.demo-popout-content img');
+      var iframe = el.querySelector('iframe');
+      if (img) { img.style.display = 'block'; img.src = 'images/netsuite-mcp-demo.jpg'; }
+      if (iframe) { iframe.style.display = 'none'; iframe.src = ''; }
+      var caption = el.querySelector('.demo-popout-caption');
+      if (caption) caption.innerHTML = '<strong>Qoder MCP × NetSuite RESTlet</strong> — 携程报销数据 → 自动生成采购申请(PR002317) + 采购订单(P0003932)，71行明细全自动匹配，PR+PO已自动链接';
+      el.classList.add('open');
     }
 
     function closeDemoPopout(event) {
