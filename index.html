@@ -336,6 +336,78 @@
           </div>
         </div>
       </div>
+
+      <!-- MCP Financial Integration Demo -->
+      <div class="mcp-demo-showcase mt-32" style="border-color: var(--accent-violet);">
+        <div class="mcp-demo-header">
+          <div class="mcp-demo-badge" style="background:rgba(108,60,224,0.1); border-color:rgba(108,60,224,0.3); color:var(--accent-violet);">
+            <span class="live-dot" style="background:var(--accent-violet);"></span> 财务数据对接
+          </div>
+          <h3>Qoder × NetSuite — 集团利润表自动生成</h3>
+          <p>通过 MCP 协议直连 NetSuite GL 总账，自动查询三家子公司财务数据，AI 生成集团合并利润表及经营看板</p>
+        </div>
+
+        <!-- 3-step workflow -->
+        <div class="workflow-steps">
+          <div class="workflow-step" onclick="openWorkflowImg('auth')">
+            <div class="workflow-step-num">1</div>
+            <div class="workflow-step-img">
+              <img src="images/qoder-netsuite-auth.jpg" alt="Qoder授权访问NetSuite" />
+            </div>
+            <div class="workflow-step-label">OAuth 授权对接</div>
+            <div class="workflow-step-desc">Qoder以claude角色获得NetSuite访问权限</div>
+          </div>
+          <div class="workflow-step-arrow">→</div>
+          <div class="workflow-step" onclick="openWorkflowImg('pl')">
+            <div class="workflow-step-num">2</div>
+            <div class="workflow-step-img">
+              <img src="images/qoder-netsuite-pl.jpg" alt="AI生成利润表" />
+            </div>
+            <div class="workflow-step-label">AI 生成利润表</div>
+            <div class="workflow-step-desc">查询GL数据，按子公司拆分并合并</div>
+          </div>
+          <div class="workflow-step-arrow">→</div>
+          <div class="workflow-step" onclick="openWorkflowImg('dashboard')">
+            <div class="workflow-step-num">3</div>
+            <div class="workflow-step-img dashboard-preview">
+              <div class="dashboard-mock">
+                <div class="dm-header">集团 2025 年度经营分析看板</div>
+                <div class="dm-kpis">
+                  <span>营收 ¥1.82亿</span>
+                  <span>毛利率 98.6%</span>
+                  <span>利润 ¥2.49亿</span>
+                </div>
+                <div class="dm-chart"></div>
+              </div>
+            </div>
+            <div class="workflow-step-label">经营分析看板</div>
+            <div class="workflow-step-desc">自动生成可视化 Dashboard</div>
+          </div>
+        </div>
+
+        <div class="mcp-demo-stats" style="grid-template-columns: repeat(5, 1fr);">
+          <div class="mcp-demo-stat">
+            <span class="stat-value">3</span>
+            <span class="stat-label">子公司合并</span>
+          </div>
+          <div class="mcp-demo-stat">
+            <span class="stat-value">¥1.82亿</span>
+            <span class="stat-label">集团营收</span>
+          </div>
+          <div class="mcp-demo-stat">
+            <span class="stat-value">98.6%</span>
+            <span class="stat-label">毛利率</span>
+          </div>
+          <div class="mcp-demo-stat">
+            <span class="stat-value">¥2.49亿</span>
+            <span class="stat-label">利润总额</span>
+          </div>
+          <div class="mcp-demo-stat">
+            <span class="stat-value">&lt;30s</span>
+            <span class="stat-label">全流程耗时</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1183,6 +1255,23 @@
 
     function closeProfileDetail() {
       document.getElementById('profileDetailOverlay').classList.remove('open');
+    }
+
+    var workflowImages = {
+      auth: { src: 'images/qoder-netsuite-auth.jpg', caption: '<strong>Step 1: OAuth 授权</strong> — Qoder 通过 NetSuite OAuth 2.0 获得「上海健耕医药科技股份有限公司」账户访问权限，以 claude 角色执行数据操作' },
+      pl: { src: 'images/qoder-netsuite-pl.jpg', caption: '<strong>Step 2: AI 生成利润表</strong> — Qoder 通过 MCP 查询 NetSuite GL (transactionaccountingline)，按子公司拆分收入/成本/费用，自动合并生成集团利润表' },
+      dashboard: { src: 'images/qoder-netsuite-pl.jpg', caption: '<strong>Step 3: 经营分析看板</strong> — AI 自动生成 ECharts 可视化看板，含 KPI 卡片、收入结构饼图、月度趋势折线图，可直接交付给管理层' }
+    };
+
+    function openWorkflowImg(key) {
+      var data = workflowImages[key];
+      if (!data) return;
+      var popout = document.getElementById('demoPopout');
+      var img = popout.querySelector('.demo-popout-content img');
+      var caption = popout.querySelector('.demo-popout-caption');
+      if (img) img.src = data.src;
+      if (caption) caption.innerHTML = data.caption;
+      popout.classList.add('open');
     }
   </script>
 
