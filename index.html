@@ -1197,8 +1197,10 @@
     function closeDemoPopout(event) {
       var popout = document.getElementById('demoPopout');
       popout.classList.remove('open');
+      var img = popout.querySelector('.demo-popout-content img');
       var iframe = popout.querySelector('iframe');
-      if (iframe) iframe.src = '';
+      if (img) { img.src = ''; img.style.display = 'none'; }
+      if (iframe) { iframe.src = ''; iframe.style.display = 'none'; }
     }
 
     // Profile detail popout data
@@ -1299,11 +1301,11 @@
           iframe.className = 'demo-popout-iframe';
           contentEl.insertBefore(iframe, caption);
         }
-        iframe.src = data.iframe;
         iframe.style.display = 'block';
+        iframe.src = data.iframe;
       } else {
         if (iframe) { iframe.style.display = 'none'; iframe.src = ''; }
-        if (img) { img.style.display = 'block'; img.src = data.src; }
+        if (img) { img.src = data.src; img.style.display = 'block'; }
       }
       if (caption) caption.innerHTML = data.caption;
       popout.classList.add('open');
