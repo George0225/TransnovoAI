@@ -1762,8 +1762,12 @@ p {
   background: var(--bg-card);
   border: 2px solid var(--accent-cyan);
   border-radius: 16px;
-  padding: 36px 40px;
+  padding: 48px 52px;
   box-shadow: var(--glow-cyan), var(--shadow-lg);
+}
+
+.mcp-demo-showcase .mcp-demo-header h3 {
+  font-size: 24px;
 }
 
 .mcp-demo-showcase.showcase-sm {
@@ -2031,7 +2035,7 @@ p {
 }
 
 .workflow-step-label {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--text-primary);
   margin-top: 10px;
