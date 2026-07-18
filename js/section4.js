@@ -325,18 +325,19 @@
       });
     }
 
-    // Auto-start crawl after 2 seconds when section is visible
+    // Auto-start crawl when section becomes active (sidebar click)
     const section = document.getElementById('section-pricing');
     if (section) {
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting && !crawlRunning) {
-            setTimeout(startCrawl, 1500);
-            obs.disconnect();
-          }
-        });
-      }, { threshold: 0.3 });
-      obs.observe(section);
+      if (section.classList.contains('active') && !crawlRunning) {
+        setTimeout(startCrawl, 1500);
+      }
+      const mo = new MutationObserver(() => {
+        if (section.classList.contains('active') && !crawlRunning) {
+          setTimeout(startCrawl, 1500);
+          mo.disconnect();
+        }
+      });
+      mo.observe(section, { attributes: true, attributeFilter: ['class'] });
     }
 
     // --- Run Simulation button ---

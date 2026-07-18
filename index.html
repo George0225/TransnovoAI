@@ -11,45 +11,50 @@
 </head>
 <body>
 
-  <!-- Circuit Corner Decorations -->
-  <svg class="circuit-corner top-left" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 110V60L30 40H70L90 20H110" stroke="#5A6D80" stroke-width="1"/>
-    <path d="M10 80V40L40 10H80" stroke="#5A6D80" stroke-width="0.5"/>
-    <circle cx="30" cy="40" r="3" fill="#5A6D80"/>
-    <circle cx="70" cy="40" r="2" fill="#5A6D80"/>
-    <circle cx="90" cy="20" r="2" fill="#5A6D80"/>
-  </svg>
-  <svg class="circuit-corner bottom-right" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M10 110V60L30 40H70L90 20H110" stroke="#5A6D80" stroke-width="1"/>
-    <path d="M10 80V40L40 10H80" stroke="#5A6D80" stroke-width="0.5"/>
-    <circle cx="30" cy="40" r="3" fill="#5A6D80"/>
-    <circle cx="70" cy="40" r="2" fill="#5A6D80"/>
-    <circle cx="90" cy="20" r="2" fill="#5A6D80"/>
-  </svg>
+  <!-- App Layout -->
+  <div class="app-layout">
 
-  <!-- Navigation -->
-  <nav class="nav" id="mainNav">
-    <div class="nav-brand">
-      <svg class="nav-logo" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect width="36" height="36" rx="8" fill="#00C8E0" fill-opacity="0.1"/>
-        <path d="M18 8L26 12V20L18 28L10 24V12L18 8Z" stroke="#00C8E0" stroke-width="1.5" fill="none"/>
-        <path d="M18 12L22 14V18L18 22L14 20V14L18 12Z" fill="#00C8E0" fill-opacity="0.3" stroke="#00C8E0" stroke-width="1"/>
-        <circle cx="18" cy="17" r="2.5" fill="#00C8E0"/>
-      </svg>
-      <div class="nav-title">Gencode Intelligence <span>智能工作台</span></div>
-    </div>
-    <ul class="nav-links">
-      <li><a href="#section-ai" class="active">AI能力对比</a></li>
-      <li><a href="#section-audit">财务智能审核</a></li>
-      <li><a href="#section-customer">客户360°画像</a></li>
-      <li><a href="#section-pricing">竞标价格预测</a></li>
-      <li><a href="#section-rdkb">研发知识库</a></li>
-    </ul>
-    <div class="nav-user">G</div>
-  </nav>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-brand">
+        <img class="sidebar-logo" src="images/logo.png" alt="Transnovo 健耕" />
+      </div>
+      <nav class="sidebar-nav">
+        <a class="sidebar-item active" data-target="section-ai">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2a4 4 0 014 4v1a4 4 0 01-8 0V6a4 4 0 014-4z"/><path d="M8 14h8l2 8H6l2-8z"/><circle cx="12" cy="6" r="1.5" fill="currentColor"/></svg>
+          <span>AI 能力</span>
+        </a>
+        <a class="sidebar-item" data-target="section-audit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12l2 2 4-4"/><path d="M3 9h18"/></svg>
+          <span>财务审核</span>
+        </a>
+        <a class="sidebar-item" data-target="section-customer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+          <span>客户画像</span>
+        </a>
+        <a class="sidebar-item" data-target="section-pricing">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 20l4-4 4 4 4-8 6 4"/><path d="M21 4v6h-6"/></svg>
+          <span>竞标预测</span>
+        </a>
+        <a class="sidebar-item" data-target="section-rdkb">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h6M8 16h4"/></svg>
+          <span>研发知识</span>
+        </a>
+      </nav>
+      <div class="sidebar-footer">
+        <div class="sidebar-user">G</div>
+      </div>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="content-area" id="contentArea">
+      <header class="content-header">
+        <h1 class="content-title">Gencode Intelligence <span>智能工作台</span></h1>
+        <div class="content-meta">上海健耕医药科技股份有限公司</div>
+      </header>
 
   <!-- ========== SECTION 1: AI Capability Comparison ========== -->
-  <section class="section" id="section-ai" style="padding-top: 160px;">
+  <section class="section active" id="section-ai">
     <div class="section-content">
       <div class="section-label">// SECTION 01</div>
       <div class="section-header">
@@ -301,42 +306,6 @@
         </div>
       </div>
 
-      <!-- MCP Real Case Demo -->
-      <div class="mcp-demo-showcase mt-32">
-        <div class="mcp-demo-header">
-          <div class="mcp-demo-badge">
-            <span class="live-dot"></span> 实战成果
-          </div>
-          <h3>NetSuite MCP 接口打通 — 采购申请自动化</h3>
-          <p>通过 Qoder MCP 协议连接 NetSuite RESTlet，实现采购申请(PR)与采购订单(PO)的全自动创建与关联</p>
-        </div>
-        <div class="mcp-demo-image" onclick="openDemoPopout()">
-          <img src="images/netsuite-mcp-demo.jpg" alt="NetSuite MCP 采购申请自动化实战截图" />
-          <div class="mcp-demo-overlay">
-            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(0,200,224,0.15)" stroke="#00C8E0" stroke-width="2"/><path d="M20 16l12 8-12 8V16z" fill="#00C8E0"/></svg>
-            <span>点击查看大图</span>
-          </div>
-        </div>
-        <div class="mcp-demo-stats">
-          <div class="mcp-demo-stat">
-            <span class="stat-value">PR002317</span>
-            <span class="stat-label">采购申请号</span>
-          </div>
-          <div class="mcp-demo-stat">
-            <span class="stat-value">P0003932</span>
-            <span class="stat-label">采购订单号</span>
-          </div>
-          <div class="mcp-demo-stat">
-            <span class="stat-value">71行</span>
-            <span class="stat-label">自动处理明细</span>
-          </div>
-          <div class="mcp-demo-stat">
-            <span class="stat-value">¥313,874</span>
-            <span class="stat-label">总金额</span>
-          </div>
-        </div>
-      </div>
-
       <!-- MCP Financial Integration Demo -->
       <div class="mcp-demo-showcase mt-32" style="border-color: var(--accent-violet);">
         <div class="mcp-demo-header">
@@ -405,6 +374,42 @@
           <div class="mcp-demo-stat">
             <span class="stat-value">&lt;30s</span>
             <span class="stat-label">全流程耗时</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MCP Real Case Demo -->
+      <div class="mcp-demo-showcase showcase-sm mt-32">
+        <div class="mcp-demo-header">
+          <div class="mcp-demo-badge">
+            <span class="live-dot"></span> 实战成果
+          </div>
+          <h3>NetSuite MCP 接口打通 — 采购申请自动化</h3>
+          <p>通过 Qoder MCP 协议连接 NetSuite RESTlet，实现采购申请(PR)与采购订单(PO)的全自动创建与关联</p>
+        </div>
+        <div class="mcp-demo-image" onclick="openDemoPopout()">
+          <img src="images/netsuite-mcp-demo.jpg" alt="NetSuite MCP 采购申请自动化实战截图" />
+          <div class="mcp-demo-overlay">
+            <svg width="48" height="48" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" fill="rgba(0,200,224,0.15)" stroke="#00C8E0" stroke-width="2"/><path d="M20 16l12 8-12 8V16z" fill="#00C8E0"/></svg>
+            <span>点击查看大图</span>
+          </div>
+        </div>
+        <div class="mcp-demo-stats">
+          <div class="mcp-demo-stat">
+            <span class="stat-value">PR002317</span>
+            <span class="stat-label">采购申请号</span>
+          </div>
+          <div class="mcp-demo-stat">
+            <span class="stat-value">P0003932</span>
+            <span class="stat-label">采购订单号</span>
+          </div>
+          <div class="mcp-demo-stat">
+            <span class="stat-value">71行</span>
+            <span class="stat-label">自动处理明细</span>
+          </div>
+          <div class="mcp-demo-stat">
+            <span class="stat-value">¥313,874</span>
+            <span class="stat-label">总金额</span>
           </div>
         </div>
       </div>
@@ -1041,6 +1046,9 @@
     <p>&copy; 2024 上海健耕医药科技股份有限公司 · Gencode Intelligence 智能工作台</p>
     <p class="powered-by">Powered by Qoder MCP</p>
   </footer>
+
+    </main><!-- /.content-area -->
+  </div><!-- /.app-layout -->
 
   <!-- ========== Chat Widget ========== -->
   <button class="chat-fab" id="chatFab" aria-label="打开AI助手">

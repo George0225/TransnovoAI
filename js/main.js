@@ -1,72 +1,38 @@
-// main.js — Navigation, scroll effects, IntersectionObserver
+// main.js — Sidebar navigation, section switching
 
 document.addEventListener('DOMContentLoaded', () => {
-  const nav = document.getElementById('mainNav');
-  const navLinks = document.querySelectorAll('.nav-links a');
+  const sidebarItems = document.querySelectorAll('.sidebar-item');
   const sections = document.querySelectorAll('.section');
-  const sectionContents = document.querySelectorAll('.section-content');
+  const contentArea = document.getElementById('contentArea');
 
-  // Scroll-linked nav background
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        if (window.scrollY > 50) {
-          nav.classList.add('scrolled');
-        } else {
-          nav.classList.remove('scrolled');
-        }
-        updateActiveNav();
-        ticking = false;
-      });
-      ticking = true;
+  function switchSection(targetId) {
+    sections.forEach(s => s.classList.remove('active'));
+    sidebarItems.forEach(item => item.classList.remove('active'));
+
+    const targetSection = document.getElementById(targetId);
+    const targetItem = document.querySelector(`.sidebar-item[data-target="${targetId}"]`);
+
+    if (targetSection) {
+      targetSection.classList.add('active');
+      contentArea.scrollTop = 0;
     }
-  });
+    if (targetItem) {
+      targetItem.classList.add('active');
+    }
 
-  // Active nav link based on scroll position
-  function updateActiveNav() {
-    let current = '';
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-      if (rect.top <= 200 && rect.bottom > 200) {
-        current = section.id;
-      }
-    });
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
-        link.classList.add('active');
-      }
-    });
+    // Trigger chart resize for the newly visible section
+    window.dispatchEvent(new Event('resize'));
   }
 
-  // Smooth scroll for nav links
-  navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute('href').slice(1);
-      const target = document.getElementById(targetId);
-      if (target) {
-        const offset = nav.offsetHeight + 20;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-      }
+  sidebarItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const target = item.getAttribute('data-target');
+      if (target) switchSection(target);
     });
   });
 
-  // IntersectionObserver for section reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, {
-    threshold: 0.1,
-    rootMargin: '0px 0px -60px 0px'
-  });
-
-  sectionContents.forEach(content => {
-    observer.observe(content);
+  // Make section-content visible immediately (no scroll reveal needed)
+  document.querySelectorAll('.section-content').forEach(el => {
+    el.classList.add('visible');
   });
 });
