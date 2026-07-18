@@ -2728,45 +2728,222 @@ p {
   .audit-split {
     grid-template-columns: 1fr;
   }
+  .rdkb-layout {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
-  :root {
-    --section-padding: 80px 24px;
-  }
+  /* Sidebar: collapse to bottom tab bar on mobile */
   .sidebar {
-    width: 56px;
-    min-width: 56px;
+    width: 100%;
+    min-width: 100%;
+    height: 60px;
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    flex-direction: row;
+    padding: 0 8px;
+    border-right: none;
+    border-top: 1px solid var(--border-default);
+    z-index: 9999;
   }
-  .sidebar-logo {
-    width: 36px;
-  }
-  .sidebar-item {
-    flex-direction: column;
-    width: 44px;
-    height: 44px;
-    padding: 0;
-    justify-content: center;
-    gap: 2px;
-  }
-  .sidebar-item span {
+
+  .sidebar-brand {
     display: none;
   }
-  .content-area {
-    margin-left: 56px;
+
+  .sidebar-nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    gap: 0;
+    padding: 0;
+    width: 100%;
   }
+
+  .sidebar-item {
+    flex-direction: column;
+    width: auto;
+    height: 52px;
+    padding: 4px 10px;
+    justify-content: center;
+    gap: 2px;
+    border-radius: 8px;
+  }
+
+  .sidebar-item svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .sidebar-item span {
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    text-transform: none;
+  }
+
+  .sidebar-item.active {
+    box-shadow: none;
+    border-bottom: 2px solid var(--accent-cyan);
+    border-radius: 4px;
+  }
+
+  .sidebar-footer {
+    display: none;
+  }
+
+  /* Content Area: full width, bottom padding for tab bar */
+  .content-area {
+    margin-left: 0;
+    padding-bottom: 70px;
+    height: 100vh;
+  }
+
   .content-header {
     padding: 12px 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
+
+  .content-title {
+    font-size: 15px !important;
+  }
+
+  .content-meta {
+    font-size: 11px;
+  }
+
+  /* Sections */
   .section {
-    padding: 24px 16px;
+    padding: 20px 16px;
   }
-  .grid-3 {
+
+  .section-header {
+    margin-bottom: 24px;
+  }
+
+  .section-header h2 {
+    font-size: 20px;
+  }
+
+  .section-header p {
+    font-size: 14px;
+  }
+
+  /* Grids: all single column */
+  .grid-3,
+  .audit-split,
+  .customer-profile,
+  .pricing-layout,
+  .rdkb-layout {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
-  .chat-window {
-    width: calc(100% - 32px);
+
+  /* Cards */
+  .card {
+    padding: 20px 16px;
+    border-radius: 12px;
+  }
+
+  /* Comparison table: horizontal scroll */
+  .comparison-table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    font-size: 12px;
+  }
+
+  /* MCP Showcase */
+  .mcp-demo-showcase {
+    padding: 20px 16px;
+  }
+
+  .mcp-demo-showcase.showcase-sm {
+    padding: 16px 14px;
+  }
+
+  .mcp-demo-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 12px;
+  }
+
+  /* Workflow steps: vertical on mobile */
+  .workflow-steps {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .workflow-step {
+    width: 100%;
+  }
+
+  .workflow-step-arrow {
+    transform: rotate(90deg);
+    text-align: center;
+  }
+
+  .workflow-step-img {
+    height: 120px;
+  }
+
+  /* Pricing chart */
+  .chart-container {
+    height: 320px;
+  }
+
+  /* Profile section */
+  .profile-stats {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Chat widget */
+  .chat-fab {
+    bottom: 76px;
     right: 16px;
-    bottom: 80px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .chat-fab::after {
+    display: none;
+  }
+
+  .chat-window {
+    width: calc(100% - 24px);
+    right: 12px;
+    bottom: 136px;
+    height: 400px;
+  }
+
+  /* R&D Knowledge Base */
+  .rdkb-architecture {
+    padding: 20px 16px;
+    overflow-x: auto;
+  }
+
+  .rdkb-arch-nodes {
+    min-width: 600px;
+  }
+
+  /* Popout modal */
+  .demo-popout-content img {
+    max-height: 60vh;
+  }
+
+  .demo-popout-iframe {
+    width: 95vw;
+    height: 70vh;
+  }
+
+  /* Profile detail modal */
+  .profile-detail-modal {
+    width: 95%;
+    max-height: 80vh;
   }
 }
