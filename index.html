@@ -1326,6 +1326,21 @@
             <span class="rdkb-dept-count">315 份</span>
           </div>
 
+          <!-- Upload Entry -->
+          <div style="margin-top:16px; padding:16px; border:2px dashed var(--accent-cyan); border-radius:10px; background:rgba(0,200,224,0.03); text-align:center; cursor:pointer; transition:all 0.2s;" onclick="document.getElementById('rdkbUpload').click()" onmouseover="this.style.background='rgba(0,200,224,0.08)'" onmouseout="this.style.background='rgba(0,200,224,0.03)'">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" style="margin-bottom:8px;"><path d="M16 20V8M12 12l4-4 4 4" stroke="#00C8E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 22v4h20v-4" stroke="#00C8E0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div style="font-size:13px; font-weight:600; color:var(--text-primary); margin-bottom:4px;">上传文档至知识库</div>
+            <div style="font-size:11px; color:var(--text-muted);">拖拽文件到此处，或点击选择文件</div>
+            <div style="margin-top:8px; display:flex; justify-content:center; gap:6px; flex-wrap:wrap;">
+              <span style="font-size:10px; background:rgba(0,200,224,0.1); border:1px solid rgba(0,200,224,0.2); padding:2px 8px; border-radius:3px; color:var(--accent-cyan);">.pdf</span>
+              <span style="font-size:10px; background:rgba(0,200,224,0.1); border:1px solid rgba(0,200,224,0.2); padding:2px 8px; border-radius:3px; color:var(--accent-cyan);">.docx</span>
+              <span style="font-size:10px; background:rgba(0,200,224,0.1); border:1px solid rgba(0,200,224,0.2); padding:2px 8px; border-radius:3px; color:var(--accent-cyan);">.pptx</span>
+              <span style="font-size:10px; background:rgba(0,200,224,0.1); border:1px solid rgba(0,200,224,0.2); padding:2px 8px; border-radius:3px; color:var(--accent-cyan);">.xlsx</span>
+              <span style="font-size:10px; background:rgba(0,200,224,0.1); border:1px solid rgba(0,200,224,0.2); padding:2px 8px; border-radius:3px; color:var(--accent-cyan);">.txt</span>
+            </div>
+            <input type="file" multiple accept=".pdf,.docx,.pptx,.xlsx,.txt" style="display:none;" id="rdkbUpload">
+          </div>
+
           <div class="rdkb-total">
             <span>总文档量</span>
             <strong>3,385 份</strong>
