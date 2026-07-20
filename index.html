@@ -538,74 +538,76 @@
                 <div><div style="font-weight:600;">顺丰6月账单样例.xlsx</div><div style="font-size:10px; color:var(--text-muted);">模板文件</div></div>
               </a>
             </div>
-            <!-- Tutorial -->
-            <div style="margin-top:16px; background:var(--bg-tertiary); border-radius:8px; padding:14px 16px;">
-              <div style="font-size:12px; font-family:var(--font-mono); color:var(--accent-green); margin-bottom:10px; letter-spacing:1px;">📖 使用教程</div>
-              <div style="font-size:12px; color:var(--text-secondary); line-height:1.8;">
-
-                <p style="font-weight:600; color:var(--text-primary); margin-bottom:8px;">① 需要下载哪些文件？</p>
-                <table style="width:100%; border-collapse:collapse; margin-bottom:16px; font-size:11px;">
-                  <tr style="background:rgba(0,200,83,0.08);">
-                    <th style="text-align:left; padding:6px 10px; border:1px solid var(--border-default); color:var(--accent-green);">文件名</th>
-                    <th style="text-align:left; padding:6px 10px; border:1px solid var(--border-default); color:var(--accent-green);">是什么</th>
-                    <th style="text-align:center; padding:6px 10px; border:1px solid var(--border-default); color:var(--accent-green);">必须？</th>
-                  </tr>
-                  <tr>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default); font-family:var(--font-mono);">一键生成顺丰采购订单.bat</td>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default);">双击/拖拽即运行的启动脚本，<strong>这是你唯一要操作的文件</strong></td>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default); text-align:center; color:var(--accent-green); font-weight:700;">✓ 必须</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default); font-family:var(--font-mono);">sf_allocate_tool.exe</td>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default);">核心引擎①：读取顺丰账单，自动按历史规则分摊费用到各部门</td>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default); text-align:center; color:var(--accent-green); font-weight:700;">✓ 必须</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default); font-family:var(--font-mono);">sf_pr_tool.exe</td>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default);">核心引擎②：分摊完成后调用NetSuite接口创建PR采购申请+PO采购订单</td>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default); text-align:center; color:var(--accent-green); font-weight:700;">✓ 必须</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default); font-family:var(--font-mono);">sf_allocation_history.json</td>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default);">分摊记忆库：记录"哪个经手人→归哪个部门"的历史规则，用得越多越准</td>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default); text-align:center; color:var(--accent-green); font-weight:700;">✓ 必须</td>
-                  </tr>
-                  <tr>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default); font-family:var(--font-mono);">.env</td>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default);">NetSuite连接凭据（账号密码等），<strong>找IT部门获取</strong>，不要外传</td>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default); text-align:center; color:var(--accent-green); font-weight:700;">✓ 必须</td>
-                  </tr>
-                  <tr style="background:rgba(255,255,255,0.02);">
-                    <td style="padding:6px 10px; border:1px solid var(--border-default); font-family:var(--font-mono);">顺丰6月账单样例.xlsx</td>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default);">样例文件，可用来测试工具是否正常运行</td>
-                    <td style="padding:6px 10px; border:1px solid var(--border-default); text-align:center; color:var(--text-muted);">可选</td>
-                  </tr>
-                </table>
-
-                <p style="font-weight:600; color:var(--text-primary); margin-bottom:8px;">② 怎么用？（3步）</p>
-                <div style="background:var(--bg-card); border:1px solid var(--border-default); border-radius:6px; padding:12px 16px; margin-bottom:12px;">
-                  <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:10px;">
-                    <span style="background:var(--accent-green); color:#fff; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0;">1</span>
-                    <div>把上面 <strong>5个必须文件</strong> 全部下载到同一个文件夹里（位置随意）</div>
-                  </div>
-                  <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:10px;">
-                    <span style="background:var(--accent-green); color:#fff; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0;">2</span>
-                    <div>收到顺丰月结账单Excel后，<strong>把xlsx文件拖到「一键生成顺丰采购订单.bat」上面松开</strong></div>
-                  </div>
-                  <div style="display:flex; gap:12px; align-items:flex-start;">
-                    <span style="background:var(--accent-green); color:#fff; width:20px; height:20px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; flex-shrink:0;">3</span>
-                    <div>等待黑窗口跑完，记下输出的 <strong>PR编号 + PO编号</strong>，完成！</div>
-                  </div>
-                </div>
-
-                <p style="margin-top:10px; padding:8px 12px; background:rgba(255,193,7,0.08); border:1px solid rgba(255,193,7,0.2); border-radius:6px; font-size:11px; color:var(--text-secondary);">
-                  ⚠️ 如果有行标黄（未匹配），说明有新的经手人/收件人组合没见过，手动补充后再拖入一次即可。映射表会自动学习，下次就不用管了。
-                </p>
-              </div>
-            </div>
           </div>
         </div>
       </div>
+
+      <!-- Tutorial - 顺丰报销工具使用教程 -->
+      <div style="margin-top:32px; background:var(--bg-tertiary); border:1px solid var(--border-default); border-radius:12px; padding:24px 28px;">
+        <div style="font-size:14px; font-weight:700; color:var(--accent-green); margin-bottom:16px;">📖 顺丰报销工具 — 使用教程</div>
+        <div style="font-size:13px; color:var(--text-secondary); line-height:1.8;">
+
+          <p style="font-weight:600; color:var(--text-primary); margin-bottom:8px;">① 需要下载哪些文件？</p>
+          <table style="width:100%; border-collapse:collapse; margin-bottom:20px; font-size:12px;">
+            <tr style="background:rgba(0,200,83,0.08);">
+              <th style="text-align:left; padding:8px 12px; border:1px solid var(--border-default); color:var(--accent-green);">文件名</th>
+              <th style="text-align:left; padding:8px 12px; border:1px solid var(--border-default); color:var(--accent-green);">是什么</th>
+              <th style="text-align:center; padding:8px 12px; border:1px solid var(--border-default); color:var(--accent-green);">必须？</th>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid var(--border-default); font-family:var(--font-mono);">一键生成顺丰采购订单.bat</td>
+              <td style="padding:8px 12px; border:1px solid var(--border-default);">双击/拖拽即运行的启动脚本，<strong>这是你唯一要操作的文件</strong></td>
+              <td style="padding:8px 12px; border:1px solid var(--border-default); text-align:center; color:var(--accent-green); font-weight:700;">✓ 必须</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid var(--border-default); font-family:var(--font-mono);">sf_allocate_tool.exe</td>
+              <td style="padding:8px 12px; border:1px solid var(--border-default);">核心引擎①：读取顺丰账单，自动按历史规则分摊费用到各部门</td>
+              <td style="padding:8px 12px; border:1px solid var(--border-default); text-align:center; color:var(--accent-green); font-weight:700;">✓ 必须</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid var(--border-default); font-family:var(--font-mono);">sf_pr_tool.exe</td>
+              <td style="padding:8px 12px; border:1px solid var(--border-default);">核心引擎②：分摊完成后调用NetSuite接口创建PR采购申请+PO采购订单</td>
+              <td style="padding:8px 12px; border:1px solid var(--border-default); text-align:center; color:var(--accent-green); font-weight:700;">✓ 必须</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid var(--border-default); font-family:var(--font-mono);">sf_allocation_history.json</td>
+              <td style="padding:8px 12px; border:1px solid var(--border-default);">分摊记忆库：记录"哪个经手人→归哪个部门"的历史规则，用得越多越准</td>
+              <td style="padding:8px 12px; border:1px solid var(--border-default); text-align:center; color:var(--accent-green); font-weight:700;">✓ 必须</td>
+            </tr>
+            <tr>
+              <td style="padding:8px 12px; border:1px solid var(--border-default); font-family:var(--font-mono);">.env</td>
+              <td style="padding:8px 12px; border:1px solid var(--border-default);">NetSuite连接凭据（账号密码等），<strong>找IT部门获取</strong>，不要外传</td>
+              <td style="padding:8px 12px; border:1px solid var(--border-default); text-align:center; color:var(--accent-green); font-weight:700;">✓ 必须</td>
+            </tr>
+            <tr style="background:rgba(255,255,255,0.02);">
+              <td style="padding:8px 12px; border:1px solid var(--border-default); font-family:var(--font-mono);">顺丰6月账单样例.xlsx</td>
+              <td style="padding:8px 12px; border:1px solid var(--border-default);">样例文件，可用来测试工具是否正常运行</td>
+              <td style="padding:8px 12px; border:1px solid var(--border-default); text-align:center; color:var(--text-muted);">可选</td>
+            </tr>
+          </table>
+
+          <p style="font-weight:600; color:var(--text-primary); margin-bottom:10px;">② 怎么用？（3步）</p>
+          <div style="background:var(--bg-card); border:1px solid var(--border-default); border-radius:8px; padding:16px 20px; margin-bottom:16px;">
+            <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:12px;">
+              <span style="background:var(--accent-green); color:#fff; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;">1</span>
+              <div>把上面 <strong>5个必须文件</strong> 全部下载到同一个文件夹里（位置随意）</div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:12px;">
+              <span style="background:var(--accent-green); color:#fff; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;">2</span>
+              <div>收到顺丰月结账单Excel后，<strong>把xlsx文件拖到「一键生成顺丰采购订单.bat」上面松开</strong></div>
+            </div>
+            <div style="display:flex; gap:12px; align-items:flex-start;">
+              <span style="background:var(--accent-green); color:#fff; width:24px; height:24px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; flex-shrink:0;">3</span>
+              <div>等待黑窗口跑完，记下输出的 <strong>PR编号 + PO编号</strong>，完成！</div>
+            </div>
+          </div>
+
+          <p style="padding:10px 14px; background:rgba(255,193,7,0.08); border:1px solid rgba(255,193,7,0.2); border-radius:6px; font-size:12px; color:var(--text-secondary);">
+            ⚠️ 如果有行标黄（未匹配），说明有新的经手人/收件人组合没见过，手动补充后再拖入一次即可。映射表会自动学习，下次就不用管了。
+          </p>
+        </div>
+      </div>
+
       <div class="ai-insight-box mt-32">
         <h4>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L10 6H14L11 9L12 13L8 11L4 13L5 9L2 6H6L8 2Z" fill="#00C8E0" fill-opacity="0.3" stroke="#00C8E0" stroke-width="1"/></svg>
