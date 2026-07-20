@@ -538,11 +538,35 @@
                 <div><div style="font-weight:600;">顺丰6月账单样例.xlsx</div><div style="font-size:10px; color:var(--text-muted);">模板文件</div></div>
               </a>
             </div>
+            <!-- Tutorial -->
+            <div style="margin-top:16px; background:var(--bg-tertiary); border-radius:8px; padding:14px 16px;">
+              <div style="font-size:12px; font-family:var(--font-mono); color:var(--accent-green); margin-bottom:10px; letter-spacing:1px;">📖 使用教程</div>
+              <div style="font-size:12px; color:var(--text-secondary); line-height:1.8;">
+                <p style="font-weight:600; color:var(--text-primary); margin-bottom:6px;">① 所需文件（放同一文件夹）：</p>
+                <div style="background:var(--bg-card); border:1px solid var(--border-default); border-radius:6px; padding:10px 14px; margin-bottom:12px; font-family:var(--font-mono); font-size:11px; line-height:1.9;">
+                  📁 顺丰报销工具/<br>
+                  ├── 一键生成顺丰采购订单.bat <span style="color:var(--text-muted);">← 启动入口</span><br>
+                  ├── sf_allocate_tool.exe <span style="color:var(--text-muted);">← 智能分摊引擎</span><br>
+                  ├── sf_pr_tool.exe <span style="color:var(--text-muted);">← PR/PO创建引擎</span><br>
+                  ├── sf_allocation_history.json <span style="color:var(--text-muted);">← 历史映射表</span><br>
+                  └── .env <span style="color:var(--text-muted);">← NetSuite凭据（找IT获取）</span>
+                </div>
+                <p style="font-weight:600; color:var(--text-primary); margin-bottom:6px;">② 操作步骤：</p>
+                <ol style="padding-left:18px; margin:0;">
+                  <li style="padding:2px 0;">下载以上所有文件至同一文件夹</li>
+                  <li style="padding:2px 0;">找IT获取 <code style="background:rgba(0,200,83,0.1); padding:1px 5px; border-radius:3px;">.env</code> 配置文件（含NS连接凭据）</li>
+                  <li style="padding:2px 0;">将顺丰原始月结账单 <code style="background:rgba(0,200,83,0.1); padding:1px 5px; border-radius:3px;">.xlsx</code> 拖拽到 <code style="background:rgba(0,200,83,0.1); padding:1px 5px; border-radius:3px;">一键生成顺丰采购订单.bat</code> 上</li>
+                  <li style="padding:2px 0;">工具自动执行：分摊费用 → 创建PR → 生成PO → 自动关联</li>
+                  <li style="padding:2px 0;">完成后记下输出的 PR / PO 编号即可</li>
+                </ol>
+                <p style="margin-top:10px; padding:8px 12px; background:rgba(255,193,7,0.08); border:1px solid rgba(255,193,7,0.2); border-radius:6px; font-size:11px; color:var(--text-secondary);">
+                  ⚠️ 如有未匹配行（标黄），需手动补充承担主体后重新拖入。映射表会自动学习，下次同类数据将自动匹配。
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-
-      <!-- Summary -->
       <div class="ai-insight-box mt-32">
         <h4>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L10 6H14L11 9L12 13L8 11L4 13L5 9L2 6H6L8 2Z" fill="#00C8E0" fill-opacity="0.3" stroke="#00C8E0" stroke-width="1"/></svg>
