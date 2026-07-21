@@ -450,6 +450,66 @@
         <p>将员工报销账单一键转化为NetSuite采购申请(PR)与采购订单(PO)，消除人工录入，全自动匹配科目与供应商</p>
       </div>
 
+      <!-- HR Agent Chat Demo -->
+      <div class="hr-chat-panel">
+        <div class="hr-chat-head">
+          <div class="hr-chat-title">
+            <span class="hr-chat-dot"></span>
+            人力Agent · 报销智能助手
+          </div>
+          <div class="hr-chat-status">在线 · 平均 1.2s 响应</div>
+        </div>
+
+        <div class="hr-chat-body" id="hrChatBody">
+          <div class="hr-msg user">
+            <div class="hr-bubble">我上周去杭州出差，携程账单已生成，帮我做报销。</div>
+            <div class="hr-avatar user">张</div>
+          </div>
+          <div class="hr-msg bot">
+            <div class="hr-avatar bot">HR</div>
+            <div class="hr-bubble">
+              好的，请上传携程账单Excel。我会解析每笔明细，并自动创建 NetSuite PR / PO。
+              <div class="hr-file-slot">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>ctrip_202607_张XX.xlsx · 已解析 12 行明细</span>
+              </div>
+            </div>
+          </div>
+          <div class="hr-msg bot">
+            <div class="hr-avatar bot">HR</div>
+            <div class="hr-bubble">
+              识别到 3 类费用，共 <b>¥ 4,286.00</b>，已按公司科目映射：
+              <table class="hr-mini-table">
+                <tr><th>费用类型</th><th>金额</th><th>NS 科目</th></tr>
+                <tr><td>机票</td><td>¥ 2,180</td><td>6602-差旅-交通</td></tr>
+                <tr><td>酒店</td><td>¥ 1,650</td><td>6602-差旅-住宿</td></tr>
+                <tr><td>打车</td><td>¥ 456</td><td>6602-差旅-市内交通</td></tr>
+              </table>
+              确认无误后，我将创建 PR#PR-2607-张XX，并自动生成同金额 PO 关联。
+              <div class="hr-actions">
+                <button class="agent-btn primary">确认并提交</button>
+                <button class="agent-btn">调整科目</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hr-chat-input">
+          <div class="hr-chat-chips">
+            <button class="hr-chip" data-text="帮我做携程差旅报销">差旅报销</button>
+            <button class="hr-chip" data-text="报销一下这个月的团队聚餐费">餐费报销</button>
+            <button class="hr-chip" data-text="打车费怎么走顺丰快递报销？">打车费</button>
+            <button class="hr-chip" data-text="上个月PR审批到哪一步了？">PR 状态查询</button>
+          </div>
+          <div class="hr-chat-box">
+            <textarea id="hrChatInput" placeholder="描述你的报销需求，或直接拖入账单文件..." rows="1"></textarea>
+            <button class="hr-send" onclick="hrSend()" aria-label="发送">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Tool Cards Grid -->
       <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:32px; margin-top:32px;">
 
@@ -1352,71 +1412,81 @@
     </div>
   </section>
 
-  <!-- ========== SECTION: 财务Agent Demo ========== -->
+  <!-- ========== SECTION: 财务Agent Demo — Dashboard style ========== -->
   <section class="section" id="section-fin-agent">
     <div class="section-content">
       <div class="section-label">// AGENT · FINANCE</div>
       <div class="section-header">
-        <h2>财务Agent — 应付账款智能审核</h2>
-        <p>自然语言驱动 · 自动调用 NetSuite MCP · 单据比对 · 差异归因 · 建议放款</p>
+        <h2>财务Agent — 应付账款智能审核台</h2>
+        <p>三方匹配可视化仪表盘：单据 · PO · 系统数据一屏对照，差异瞬间定位</p>
       </div>
 
-      <div class="agent-chat">
-        <!-- User -->
-        <div class="agent-msg user">
-          <div class="agent-avatar user">G</div>
-          <div class="agent-bubble user">
-            帮我审核一下这张发票 <strong>INV-2026-0871</strong>，供应商是 <strong>Organ Recovery Systems</strong>，金额 USD 128,400。
+      <!-- Search / query bar -->
+      <div class="fin-query">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="finQuery" type="text" placeholder="输入发票号 / 供应商名称 / PO 号...  例：INV-2026-0871" value="INV-2026-0871" />
+        <button class="agent-btn primary" onclick="finRun()">开始审核</button>
+      </div>
+      <div class="fin-suggest">
+        <span>快速试例:</span>
+        <button class="fin-tag" data-q="INV-2026-0871">INV-2026-0871</button>
+        <button class="fin-tag" data-q="Organ Recovery Systems">Organ Recovery Systems</button>
+        <button class="fin-tag" data-q="PO-4592">PO-4592</button>
+      </div>
+
+      <!-- Dashboard 3-col -->
+      <div class="fin-dashboard">
+        <div class="fin-col">
+          <div class="fin-col-head">
+            <span class="fin-col-badge invoice">发票原件</span>
+            <span class="fin-col-meta">OCR 置信度 99.2%</span>
           </div>
+          <div class="fin-field"><label>发票号</label><b>INV-2026-0871</b></div>
+          <div class="fin-field"><label>供应商</label><b>Organ Recovery Systems</b></div>
+          <div class="fin-field"><label>币种 / 金额</label><b>USD 128,400.00</b></div>
+          <div class="fin-field"><label>开票日期</label><b>2026-07-05</b></div>
+          <div class="fin-field"><label>付款条款</label><b>Net 30</b></div>
         </div>
 
-        <!-- Agent thinking -->
-        <div class="agent-msg">
-          <div class="agent-avatar bot">AI</div>
-          <div class="agent-bubble bot">
-            <div class="agent-step">好的，我将从 NetSuite 拉取对应的采购订单和收货单，做三方匹配。</div>
-
-            <div class="agent-tool">
-              <div class="agent-tool-head">
-                <span class="agent-tool-tag">MCP · NetSuite</span>
-                <span class="agent-tool-name">ns_runCustomSuiteQL</span>
-                <span class="agent-tool-status ok">200ms</span>
-              </div>
-              <pre class="agent-tool-body">SELECT tranid, entity, total, status FROM transaction
-WHERE type='PurchOrd' AND memo LIKE '%INV-2026-0871%'</pre>
-            </div>
-
-            <div class="agent-tool result">
-              <div class="agent-tool-head">
-                <span class="agent-tool-tag">结果</span>
-                <span class="agent-tool-name">匹配到 PO#PO-4592</span>
-              </div>
-              <table class="agent-table">
-                <tr><th>字段</th><th>PO 值</th><th>发票值</th><th></th></tr>
-                <tr><td>供应商</td><td>Organ Recovery Systems</td><td>Organ Recovery Systems</td><td class="ok">✓</td></tr>
-                <tr><td>币种</td><td>USD</td><td>USD</td><td class="ok">✓</td></tr>
-                <tr><td>行项目金额</td><td>128,400.00</td><td>128,400.00</td><td class="ok">✓</td></tr>
-                <tr><td>已收货数量</td><td>4 / 4</td><td>—</td><td class="ok">✓</td></tr>
-                <tr><td>税率</td><td>0%（进口）</td><td>0%</td><td class="ok">✓</td></tr>
-                <tr><td>付款条款</td><td>Net 45</td><td>Net 30</td><td class="warn">Δ 15天差异</td></tr>
-              </table>
-            </div>
-
-            <div class="agent-step">三方匹配通过，仅付款条款有差异（发票 Net30 vs PO Net45），此差异对我方有利，可接受。</div>
-
-            <div class="agent-verdict ok">
-              <div class="agent-verdict-title">审核结论：<strong>建议放款</strong></div>
-              <div class="agent-verdict-meta">
-                <span>匹配度 <b>98.5%</b></span>
-                <span>风险等级 <b>低</b></span>
-                <span>建议付款日期 <b>2026-08-20</b></span>
-              </div>
-              <div class="agent-verdict-actions">
-                <button class="agent-btn primary">一键提交审批</button>
-                <button class="agent-btn">查看完整凭证</button>
-              </div>
-            </div>
+        <div class="fin-col highlight">
+          <div class="fin-col-head">
+            <span class="fin-col-badge ai">AI 比对</span>
+            <span class="fin-col-meta">3.2s 完成</span>
           </div>
+          <div class="fin-compare-row ok"><span>供应商</span><span>PO 一致</span></div>
+          <div class="fin-compare-row ok"><span>币种</span><span>USD ↔ USD</span></div>
+          <div class="fin-compare-row ok"><span>金额</span><span>128,400.00 完全一致</span></div>
+          <div class="fin-compare-row ok"><span>收货</span><span>4 / 4 已入库</span></div>
+          <div class="fin-compare-row warn"><span>付款条款</span><span>Net 30 vs Net 45 (对我方有利)</span></div>
+          <div class="fin-compare-row ok"><span>税务</span><span>0% (进口) 一致</span></div>
+        </div>
+
+        <div class="fin-col">
+          <div class="fin-col-head">
+            <span class="fin-col-badge ns">NetSuite PO</span>
+            <span class="fin-col-meta">via MCP</span>
+          </div>
+          <div class="fin-field"><label>PO 编号</label><b>PO-4592</b></div>
+          <div class="fin-field"><label>状态</label><b class="status-ok">Fully Received</b></div>
+          <div class="fin-field"><label>合同签订</label><b>2026-06-12</b></div>
+          <div class="fin-field"><label>付款条款</label><b>Net 45</b></div>
+          <div class="fin-field"><label>负责人</label><b>Finance · Lily Chen</b></div>
+        </div>
+      </div>
+
+      <!-- Verdict panel -->
+      <div class="fin-verdict">
+        <div class="fin-verdict-left">
+          <div class="fin-verdict-score">98.5<span>%</span></div>
+          <div class="fin-verdict-label">匹配度</div>
+        </div>
+        <div class="fin-verdict-mid">
+          <div class="fin-verdict-title">审核结论：<strong>建议放款</strong> · 风险等级 <b class="ok">低</b></div>
+          <div class="fin-verdict-sub">建议付款日期 2026-08-20 · 预计节省 ¥12,600 财务费用（Net30→Net45差异保留）</div>
+        </div>
+        <div class="fin-verdict-right">
+          <button class="agent-btn primary">一键提交审批</button>
+          <button class="agent-btn">查看完整凭证</button>
         </div>
       </div>
 
@@ -1424,149 +1494,249 @@ WHERE type='PurchOrd' AND memo LIKE '%INV-2026-0871%'</pre>
         <div class="agent-metric"><div class="agent-metric-num">2.1s</div><div class="agent-metric-label">平均审核耗时</div></div>
         <div class="agent-metric"><div class="agent-metric-num">96.7%</div><div class="agent-metric-label">自动通过率</div></div>
         <div class="agent-metric"><div class="agent-metric-num">-82%</div><div class="agent-metric-label">人工工时下降</div></div>
-        <div class="agent-metric"><div class="agent-metric-num">0</div><div class="agent-metric-label">误付事件（近12月）</div></div>
+        <div class="agent-metric"><div class="agent-metric-num">0</div><div class="agent-metric-label">误付事件</div></div>
       </div>
     </div>
   </section>
 
-  <!-- ========== SECTION: 客户Agent Demo ========== -->
+  <!-- ========== SECTION: 客户Agent Demo — Search + Grid style ========== -->
   <section class="section" id="section-cust-agent">
     <div class="section-content">
       <div class="section-label">// AGENT · CUSTOMER</div>
       <div class="section-header">
-        <h2>客户Agent — 医院客户画像与商机预测</h2>
-        <p>贯通 NetSuite 订单 · CRM 跟进记录 · 公开临床数据，输出可执行的客户策略</p>
+        <h2>客户Agent — 医院客户画像与商机雷达</h2>
+        <p>一键定位高价值客户 · 自然语言检索 · CRM+ERP 数据统一视图</p>
       </div>
 
-      <div class="agent-chat">
-        <div class="agent-msg user">
-          <div class="agent-avatar user">G</div>
-          <div class="agent-bubble user">
-            分析一下 <strong>上海市第一人民医院</strong> 这个客户，最近有没有增购 LifePort 灌注液的机会？
+      <!-- Search bar -->
+      <div class="cust-search">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="custQuery" type="text" placeholder="输入医院名称、城市、或商机关键词...  例：华东 三甲 肾移植"  value="华东 三甲 肾移植" />
+        <button class="agent-btn primary" onclick="custRun()">检索客户</button>
+      </div>
+
+      <!-- Filter chips -->
+      <div class="cust-filters">
+        <button class="cust-chip active">全部客户</button>
+        <button class="cust-chip">三甲医院</button>
+        <button class="cust-chip">高活跃</button>
+        <button class="cust-chip">有商机</button>
+        <button class="cust-chip">停采预警</button>
+        <button class="cust-chip">新签约</button>
+      </div>
+
+      <!-- Result cards grid -->
+      <div class="cust-grid">
+        <div class="cust-card">
+          <div class="cust-card-head">
+            <div>
+              <div class="cust-name">上海市第一人民医院</div>
+              <div class="cust-sub">三甲综合 · 华东 · 客户等级 A</div>
+            </div>
+            <span class="agent-tag hot">高活跃</span>
+          </div>
+          <div class="cust-metrics">
+            <div><span>近3年采购</span><b>¥ 284.8万</b></div>
+            <div><span>年均订单</span><b>18 单</b></div>
+            <div><span>手术量(25)</span><b>128 例</b></div>
+            <div><span>预测增长</span><b class="up">↑ 22%</b></div>
+          </div>
+          <div class="cust-bar">
+            <div class="cust-bar-fill" style="width:82%; background:linear-gradient(90deg,#00C8E0,#00e0b8);"></div>
+          </div>
+          <div class="cust-tags"><span>LifePort 灌注液</span><span>器官移植中心</span><span>补货窗口 8月</span></div>
+          <div class="cust-card-foot">
+            <span class="cust-prob">成交概率 <b>76%</b></span>
+            <button class="agent-btn primary">生成拜访简报</button>
           </div>
         </div>
 
-        <div class="agent-msg">
-          <div class="agent-avatar bot">AI</div>
-          <div class="agent-bubble bot">
-            <div class="agent-step">正在整合 NetSuite 历史订单、CRM 拜访记录、以及该院公开的肾移植数据。</div>
-
-            <div class="agent-tool">
-              <div class="agent-tool-head">
-                <span class="agent-tool-tag">MCP · NetSuite</span>
-                <span class="agent-tool-name">customer.getSalesHistory</span>
-                <span class="agent-tool-status ok">180ms</span>
-              </div>
-              <pre class="agent-tool-body">customer_id=C-1088  years=3  group_by=item</pre>
+        <div class="cust-card">
+          <div class="cust-card-head">
+            <div>
+              <div class="cust-name">杭州市第一人民医院</div>
+              <div class="cust-sub">三甲综合 · 华东 · 客户等级 A</div>
             </div>
+            <span class="agent-tag warn">补货窗口</span>
+          </div>
+          <div class="cust-metrics">
+            <div><span>近3年采购</span><b>¥ 196.2万</b></div>
+            <div><span>年均订单</span><b>12 单</b></div>
+            <div><span>手术量(25)</span><b>86 例</b></div>
+            <div><span>预测增长</span><b class="up">↑ 15%</b></div>
+          </div>
+          <div class="cust-bar">
+            <div class="cust-bar-fill" style="width:64%; background:linear-gradient(90deg,#ffb020,#ff7a45);"></div>
+          </div>
+          <div class="cust-tags"><span>LifePort LKT-100</span><span>肝移植</span><span>库存低于安全线</span></div>
+          <div class="cust-card-foot">
+            <span class="cust-prob">成交概率 <b>68%</b></span>
+            <button class="agent-btn primary">推送补货方案</button>
+          </div>
+        </div>
 
-            <div class="agent-profile">
-              <div class="agent-profile-head">
-                <div>
-                  <div class="agent-profile-name">上海市第一人民医院 · 器官移植中心</div>
-                  <div class="agent-profile-sub">三甲综合 · 华东区 · 客户等级 A</div>
-                </div>
-                <span class="agent-tag hot">高活跃</span>
-              </div>
-              <div class="agent-profile-grid">
-                <div><span>近3年采购额</span><b>¥ 2,847,600</b></div>
-                <div><span>主力产品</span><b>LifePort 灌注液</b></div>
-                <div><span>年均订单</span><b>18 单</b></div>
-                <div><span>最近下单</span><b>2026-06-14</b></div>
-                <div><span>移植手术量(2025)</span><b>128 例</b></div>
-                <div><span>预测增长</span><b class="up">↑ 22%</b></div>
-              </div>
+        <div class="cust-card">
+          <div class="cust-card-head">
+            <div>
+              <div class="cust-name">南京鼓楼医院</div>
+              <div class="cust-sub">三甲综合 · 华东 · 客户等级 B</div>
             </div>
+            <span class="agent-tag cold">流失预警</span>
+          </div>
+          <div class="cust-metrics">
+            <div><span>近3年采购</span><b>¥ 87.4万</b></div>
+            <div><span>年均订单</span><b>6 单</b></div>
+            <div><span>手术量(25)</span><b>42 例</b></div>
+            <div><span>预测增长</span><b class="down">↓ 8%</b></div>
+          </div>
+          <div class="cust-bar">
+            <div class="cust-bar-fill" style="width:32%; background:linear-gradient(90deg,#ff5c5c,#ff8080);"></div>
+          </div>
+          <div class="cust-tags"><span>90天无订单</span><span>竞对介入</span><span>紧急跟进</span></div>
+          <div class="cust-card-foot">
+            <span class="cust-prob">流失风险 <b>高</b></span>
+            <button class="agent-btn primary">分派客户经理</button>
+          </div>
+        </div>
 
-            <div class="agent-step">对比 2025 手术量增速与库存周转，预计下次补货窗口在 <b>2026-08 中旬</b>。</div>
-
-            <div class="agent-verdict ok">
-              <div class="agent-verdict-title">建议动作：<strong>本月内主动拜访 · 提报套餐方案</strong></div>
-              <div class="agent-verdict-meta">
-                <span>预估订单额 <b>¥ 320,000 ~ 380,000</b></span>
-                <span>成交概率 <b>76%</b></span>
-                <span>负责销售 <b>王XX</b></span>
-              </div>
-              <div class="agent-verdict-actions">
-                <button class="agent-btn primary">生成拜访简报</button>
-                <button class="agent-btn">同步至 CRM 任务</button>
-              </div>
+        <div class="cust-card">
+          <div class="cust-card-head">
+            <div>
+              <div class="cust-name">复旦大学附属中山医院</div>
+              <div class="cust-sub">三甲综合 · 华东 · 客户等级 A+</div>
             </div>
+            <span class="agent-tag hot">新签约</span>
+          </div>
+          <div class="cust-metrics">
+            <div><span>预估年采</span><b>¥ 320万</b></div>
+            <div><span>首单</span><b>2026-06</b></div>
+            <div><span>手术量(25)</span><b>210 例</b></div>
+            <div><span>合作深度</span><b class="up">扩展中</b></div>
+          </div>
+          <div class="cust-bar">
+            <div class="cust-bar-fill" style="width:92%; background:linear-gradient(90deg,#6C3CE0,#a06cff);"></div>
+          </div>
+          <div class="cust-tags"><span>战略客户</span><span>联合临床研究</span><span>NMPA 数据合作</span></div>
+          <div class="cust-card-foot">
+            <span class="cust-prob">升级概率 <b>91%</b></span>
+            <button class="agent-btn primary">提报套餐方案</button>
           </div>
         </div>
       </div>
 
       <div class="agent-metrics">
-        <div class="agent-metric"><div class="agent-metric-num">1,247</div><div class="agent-metric-label">已建档医院客户</div></div>
+        <div class="agent-metric"><div class="agent-metric-num">1,247</div><div class="agent-metric-label">已建档医院</div></div>
         <div class="agent-metric"><div class="agent-metric-num">73%</div><div class="agent-metric-label">商机预测命中率</div></div>
-        <div class="agent-metric"><div class="agent-metric-num">↑2.4×</div><div class="agent-metric-label">销售拜访转化率</div></div>
-        <div class="agent-metric"><div class="agent-metric-num">实时</div><div class="agent-metric-label">数据同步频次</div></div>
+        <div class="agent-metric"><div class="agent-metric-num">↑2.4×</div><div class="agent-metric-label">拜访转化率</div></div>
+        <div class="agent-metric"><div class="agent-metric-num">实时</div><div class="agent-metric-label">CRM 同步</div></div>
       </div>
     </div>
   </section>
 
-  <!-- ========== SECTION: 竞标Agent Demo ========== -->
+  <!-- ========== SECTION: 竞标Agent Demo — Form + Report style ========== -->
   <section class="section" id="section-bid-agent">
     <div class="section-content">
       <div class="section-label">// AGENT · BIDDING</div>
       <div class="section-header">
-        <h2>竞标Agent — 招投标智能报价</h2>
-        <p>历史中标数据 · 竞对报价情报 · 成本模型联动，输出胜率与利润双优的报价区间</p>
+        <h2>竞标Agent — 智能报价工作台</h2>
+        <p>输入项目参数 · 实时测算胜率 · 一键输出最优报价与投标书骨架</p>
       </div>
 
-      <div class="agent-chat">
-        <div class="agent-msg user">
-          <div class="agent-avatar user">G</div>
-          <div class="agent-bubble user">
-            <strong>浙江省器官移植耗材集采</strong> 项目，产品 <strong>LifePort LKT-100</strong>，预计采购量 <strong>500 套</strong>。请测算最优报价。
+      <div class="bid-workbench">
+        <!-- Left: form -->
+        <div class="bid-form">
+          <div class="bid-form-title">项目参数</div>
+
+          <label class="bid-label">项目名称</label>
+          <input class="bid-input" id="bidProject" type="text" value="浙江省器官移植耗材集采" />
+
+          <div class="bid-row-2">
+            <div>
+              <label class="bid-label">产品型号</label>
+              <select class="bid-input">
+                <option>LifePort LKT-100</option>
+                <option>LifePort LKT-200</option>
+                <option>灌注液 LP-500ml</option>
+              </select>
+            </div>
+            <div>
+              <label class="bid-label">采购量</label>
+              <input class="bid-input" type="number" id="bidQty" value="500" />
+            </div>
           </div>
+
+          <div class="bid-row-2">
+            <div>
+              <label class="bid-label">区域</label>
+              <select class="bid-input">
+                <option>华东</option><option>华北</option><option>华南</option><option>华中</option><option>西部</option>
+              </select>
+            </div>
+            <div>
+              <label class="bid-label">单套成本 (¥)</label>
+              <input class="bid-input" type="number" id="bidCost" value="8200" />
+            </div>
+          </div>
+
+          <label class="bid-label">主要竞对（多选）</label>
+          <div class="bid-check-list">
+            <label><input type="checkbox" checked /> 竞对 A · Waters</label>
+            <label><input type="checkbox" checked /> 竞对 B · XVIVO</label>
+            <label><input type="checkbox" /> 竞对 C · Bridge to Life</label>
+          </div>
+
+          <label class="bid-label">补充要求 (可选)</label>
+          <textarea class="bid-input" rows="2" placeholder="如：本项目需含 3 年售后服务包..."></textarea>
+
+          <button class="agent-btn primary bid-run" onclick="bidRun()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+            测算最优报价
+          </button>
         </div>
 
-        <div class="agent-msg">
-          <div class="agent-avatar bot">AI</div>
-          <div class="agent-bubble bot">
-            <div class="agent-step">正在拉取历史中标数据、竞对最近3次报价、当前成本模型。</div>
-
-            <div class="agent-tool">
-              <div class="agent-tool-head">
-                <span class="agent-tool-tag">MCP · 招投标情报</span>
-                <span class="agent-tool-name">bid.searchComparable</span>
-                <span class="agent-tool-status ok">340ms</span>
-              </div>
-              <pre class="agent-tool-body">product=LKT-100  region=华东  years=2  status=已中标</pre>
+        <!-- Right: live report -->
+        <div class="bid-report">
+          <div class="bid-report-hero">
+            <div class="bid-hero-label">推荐报价 / 套</div>
+            <div class="bid-hero-price">¥ 9,800</div>
+            <div class="bid-hero-sub">
+              <span>中标概率 <b class="up">81%</b></span>
+              <span>单套毛利 <b>¥1,600</b></span>
+              <span>项目总利润 <b>¥ 800,000</b></span>
             </div>
+          </div>
 
-            <div class="agent-bid-grid">
-              <div class="agent-bid-card">
-                <div class="agent-bid-title">竞争格局</div>
-                <div class="agent-bid-row"><span>本司</span><b>3 次中标 / 5 次投标</b><i class="ok">60%</i></div>
-                <div class="agent-bid-row"><span>竞对 A</span><b>2 次中标 / 4 次投标</b><i>50%</i></div>
-                <div class="agent-bid-row"><span>竞对 B</span><b>1 次中标 / 6 次投标</b><i class="warn">17%</i></div>
+          <div class="bid-report-block">
+            <div class="bid-block-title">报价定位</div>
+            <div class="bid-scale">
+              <div class="bid-scale-track">
+                <div class="bid-scale-zone lose" style="left:0; width:15%;"></div>
+                <div class="bid-scale-zone ok" style="left:15%; width:50%;"></div>
+                <div class="bid-scale-zone risk" style="left:65%; width:35%;"></div>
+                <div class="bid-scale-mark" style="left:38%;">▲ 推荐</div>
               </div>
-              <div class="agent-bid-card">
-                <div class="agent-bid-title">报价区间建模</div>
-                <div class="agent-bid-bar">
-                  <div class="agent-bid-bar-fill" style="left:12%; width:26%;"></div>
-                  <div class="agent-bid-bar-mark" style="left:38%;" title="推荐">▲</div>
-                </div>
-                <div class="agent-bid-legend">
-                  <span>成本线 ¥8,200</span><span>推荐 <b>¥9,800</b></span><span>竞对均值 ¥10,400</span>
-                </div>
+              <div class="bid-scale-legend">
+                <span>¥8,200 成本线</span>
+                <span>¥9,800 推荐</span>
+                <span>¥11,500 竞对高值</span>
               </div>
             </div>
+          </div>
 
-            <div class="agent-verdict ok">
-              <div class="agent-verdict-title">推荐报价：<strong>¥ 9,800 / 套</strong></div>
-              <div class="agent-verdict-meta">
-                <span>预计中标概率 <b>81%</b></span>
-                <span>单套毛利 <b>¥1,600</b></span>
-                <span>项目总利润 <b>¥ 800,000</b></span>
-              </div>
-              <div class="agent-verdict-actions">
-                <button class="agent-btn primary">生成投标书草稿</button>
-                <button class="agent-btn">敏感性分析</button>
-              </div>
-            </div>
+          <div class="bid-report-block">
+            <div class="bid-block-title">竞争格局（近2年）</div>
+            <table class="bid-table">
+              <tr><th>厂商</th><th>投标</th><th>中标</th><th>胜率</th></tr>
+              <tr><td><b>本司</b></td><td>5</td><td>3</td><td class="up">60%</td></tr>
+              <tr><td>竞对 A</td><td>4</td><td>2</td><td>50%</td></tr>
+              <tr><td>竞对 B</td><td>6</td><td>1</td><td class="down">17%</td></tr>
+            </table>
+          </div>
+
+          <div class="bid-actions">
+            <button class="agent-btn primary">生成投标书草稿</button>
+            <button class="agent-btn">敏感性分析</button>
+            <button class="agent-btn">导出 PDF</button>
           </div>
         </div>
       </div>
@@ -1580,75 +1750,118 @@ WHERE type='PurchOrd' AND memo LIKE '%INV-2026-0871%'</pre>
     </div>
   </section>
 
-  <!-- ========== SECTION: 研发Agent Demo ========== -->
+  <!-- ========== SECTION: 研发Agent Demo — Perplexity-style ========== -->
   <section class="section" id="section-rd-agent">
     <div class="section-content">
       <div class="section-label">// AGENT · R&amp;D</div>
       <div class="section-header">
-        <h2>研发Agent — 知识库智能问答</h2>
-        <p>专利 · SOP · 临床方案 · 法规文件统一检索，附带来源引用与可追溯链路</p>
+        <h2>研发Agent — 全域知识问答</h2>
+        <p>专利 · SOP · 临床方案 · 法规文件一处检索 · 每句回答均可追溯至原文引用</p>
       </div>
 
-      <div class="agent-chat">
-        <div class="agent-msg user">
-          <div class="agent-avatar user">G</div>
-          <div class="agent-bubble user">
-            我们的 <strong>LifePort 灌注液配方</strong> 有没有近期的专利更新？以及 FDA 关于低温灌注设备的最新审评要点是什么？
+      <!-- Perplexity-like search -->
+      <div class="rd-hero">
+        <div class="rd-search-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <textarea id="rdQuery" rows="1" placeholder="向企业知识库提问...  例：FDA 关于低温灌注设备的最新审评要点？">LifePort 灌注液近期专利更新？FDA 关于低温灌注设备最新审评要点？</textarea>
+          <button class="rd-send" onclick="rdRun()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </div>
+        <div class="rd-suggests">
+          <span class="rd-suggest-label">试试:</span>
+          <button class="rd-suggest">灌注液羟乙基淀粉配方专利</button>
+          <button class="rd-suggest">DCD 供体临床方案模板</button>
+          <button class="rd-suggest">NMPA 2026 变更申报流程</button>
+          <button class="rd-suggest">生物负载验证 SOP</button>
+        </div>
+      </div>
+
+      <!-- Answer + sources 2-col -->
+      <div class="rd-result">
+        <div class="rd-answer-col">
+          <div class="rd-answer-tabs">
+            <span class="rd-tab active">回答</span>
+            <span class="rd-tab">相关文档 <i>12</i></span>
+            <span class="rd-tab">思考过程</span>
+          </div>
+
+          <div class="rd-answer-body">
+            <h4>1. 内部专利更新（近 6 月）</h4>
+            <p>
+              专利《一种含改良羟乙基淀粉的器官保存液配方》(申请号 <b>CN2026101234</b>) 已进入 <b>实审阶段</b><sup>[1]</sup>，
+              另有 2 项工艺专利处于撰写中<sup>[2][3]</sup>。核心改进点为渗透压稳定性提升 <b>18%</b>，冷缺血耐受时间延长至 <b>24h</b><sup>[1]</sup>。
+            </p>
+
+            <h4>2. FDA 审评要点（2026-Q2 更新）</h4>
+            <p>
+              FDA CDRH 在最新指南中要求低温灌注设备提交：<b>持续温度记录曲线</b>、<b>灌注压力稳定性验证</b>、<b>3 批次生物负载数据</b><sup>[4]</sup>。
+              相较 2024 版新增了针对 <em>DCD 供体</em> 的独立性能验证要求<sup>[5]</sup>。
+            </p>
+
+            <h4>建议下一步</h4>
+            <ul class="rd-list">
+              <li>补充 3 批次生物负载验证数据（负责部门：QA）</li>
+              <li>启动 DCD 独立性能验证方案（负责部门：临床医学部）</li>
+              <li>专利实审阶段跟踪，预计 2026-Q4 出结果</li>
+            </ul>
+
+            <div class="rd-answer-actions">
+              <button class="agent-btn primary">生成合规差距报告</button>
+              <button class="agent-btn">分派任务给注册部</button>
+              <button class="agent-btn">导出为 Word</button>
+            </div>
           </div>
         </div>
 
-        <div class="agent-msg">
-          <div class="agent-avatar bot">AI</div>
-          <div class="agent-bubble bot">
-            <div class="agent-step">检索企业专利库 + 法规订阅库，共命中 12 篇相关文档。</div>
-
-            <div class="agent-tool">
-              <div class="agent-tool-head">
-                <span class="agent-tool-tag">MCP · KnowledgeBase</span>
-                <span class="agent-tool-name">rdkb.hybridSearch</span>
-                <span class="agent-tool-status ok">420ms</span>
-              </div>
-              <pre class="agent-tool-body">query="LifePort 灌注液 专利 FDA 低温灌注"  topK=8</pre>
-            </div>
-
-            <div class="agent-answer">
-              <div class="agent-answer-block">
-                <div class="agent-answer-h">1. 内部专利更新（近 6 月）</div>
-                <p>《一种含改良羟乙基淀粉的器官保存液配方》(申请号 CN2026101234) 已进入实审阶段<sup>[1]</sup>；另有 2 项工艺专利处于撰写中<sup>[2][3]</sup>。</p>
-              </div>
-              <div class="agent-answer-block">
-                <div class="agent-answer-h">2. FDA 审评要点（2026-Q2 更新）</div>
-                <p>FDA 在 CDRH 最新指南中强调：<b>低温灌注设备</b>需提供 <em>持续温度记录曲线</em> + <em>灌注压力稳定性验证</em> + <em>3 批次生物负载数据</em><sup>[4]</sup>。相比 2024 版，新增了针对 DCD 供体的独立性能验证要求<sup>[5]</sup>。</p>
-              </div>
-              <div class="agent-answer-refs">
-                <div class="agent-ref">[1] 内部专利库 · 申请号 CN2026101234.pdf · 2026-04-11</div>
-                <div class="agent-ref">[2] 工艺专利草稿 v0.3.docx · 研发部</div>
-                <div class="agent-ref">[3] 工艺专利草稿 v0.1.docx · 研发部</div>
-                <div class="agent-ref">[4] FDA-CDRH-Guidance-Hypothermic-Perfusion-2026.pdf · §4.2</div>
-                <div class="agent-ref">[5] FDA Letter to Industry · 2026-05-08</div>
-              </div>
-            </div>
-
-            <div class="agent-verdict">
-              <div class="agent-verdict-title">下一步建议</div>
-              <div class="agent-verdict-meta">
-                <span>补充 <b>3 批次生物负载验证</b> 数据</span>
-                <span>DCD 独立性能验证方案 <b>待启动</b></span>
-              </div>
-              <div class="agent-verdict-actions">
-                <button class="agent-btn primary">生成合规差距报告</button>
-                <button class="agent-btn">分派任务给注册部</button>
-              </div>
+        <aside class="rd-sources-col">
+          <div class="rd-sources-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M8 8h8M8 12h6M8 16h4"/></svg>
+            引用来源 · 5 篇
+          </div>
+          <div class="rd-source">
+            <div class="rd-source-num">1</div>
+            <div>
+              <div class="rd-source-name">CN2026101234 · 器官保存液配方专利.pdf</div>
+              <div class="rd-source-meta">内部专利库 · 2026-04-11 · §3.2</div>
             </div>
           </div>
-        </div>
+          <div class="rd-source">
+            <div class="rd-source-num">2</div>
+            <div>
+              <div class="rd-source-name">工艺专利草稿 v0.3.docx</div>
+              <div class="rd-source-meta">研发部 · 内部草稿</div>
+            </div>
+          </div>
+          <div class="rd-source">
+            <div class="rd-source-num">3</div>
+            <div>
+              <div class="rd-source-name">工艺专利草稿 v0.1.docx</div>
+              <div class="rd-source-meta">研发部 · 内部草稿</div>
+            </div>
+          </div>
+          <div class="rd-source">
+            <div class="rd-source-num">4</div>
+            <div>
+              <div class="rd-source-name">FDA-CDRH-Guidance-Hypothermic-Perfusion-2026.pdf</div>
+              <div class="rd-source-meta">法规订阅库 · §4.2</div>
+            </div>
+          </div>
+          <div class="rd-source">
+            <div class="rd-source-num">5</div>
+            <div>
+              <div class="rd-source-name">FDA Letter to Industry</div>
+              <div class="rd-source-meta">法规订阅库 · 2026-05-08</div>
+            </div>
+          </div>
+        </aside>
       </div>
 
       <div class="agent-metrics">
         <div class="agent-metric"><div class="agent-metric-num">3,842</div><div class="agent-metric-label">已索引文档</div></div>
-        <div class="agent-metric"><div class="agent-metric-num">100%</div><div class="agent-metric-label">回答带引用来源</div></div>
+        <div class="agent-metric"><div class="agent-metric-num">100%</div><div class="agent-metric-label">回答带引用</div></div>
         <div class="agent-metric"><div class="agent-metric-num">1.8s</div><div class="agent-metric-label">平均首字延迟</div></div>
-        <div class="agent-metric"><div class="agent-metric-num">7×24</div><div class="agent-metric-label">研发问答可用性</div></div>
+        <div class="agent-metric"><div class="agent-metric-num">7×24</div><div class="agent-metric-label">研发问答可用</div></div>
       </div>
     </div>
   </section>
@@ -1929,6 +2142,7 @@ WHERE type='PurchOrd' AND memo LIKE '%INV-2026-0871%'</pre>
   <script src="js/section4.js"></script>
   <script src="js/section5.js"></script>
   <script src="js/chat.js"></script>
+  <script src="js/agents.js"></script>
 
   <!-- Demo Popout Modal (body level for proper fixed positioning) -->
   <div class="demo-popout-overlay" id="demoPopout" onclick="closeDemoPopout(event)">
