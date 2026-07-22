@@ -443,6 +443,95 @@
         }, 350);
       });
     }
+
+    // --- Export Excel with formulas ---
+    const btnExport = document.getElementById('btnExportExcel');
+    if (btnExport) {
+      btnExport.addEventListener('click', () => {
+        if (typeof XLSX === 'undefined') {
+          alert('Excel 导出库尚未加载，请稍候重试。');
+          return;
+        }
+
+        const competitors = parseInt(sliders.competitors.el.value);
+        const winners = parseInt(sliders.winners.el.value);
+        const basePrice = parseFloat(sliders.minPrice.el.value) / 100;
+        const dropPct = parseInt(sliders.drop.el.value);
+        const iterations = parseInt(sliders.iterations.el.value);
+
+        const wb = XLSX.utils.book_new();
+
+        // Sheet 1: 输入参数
+        const s1 = [
+          ['参数名', '当前值', '单位/说明'],
+          ['参与企业数', competitors, '家'],
+          ['中标名额', winners, '家'],
+          ['上轮最低中标价', basePrice, '元/粒'],
+          ['价格降幅预期', dropPct, '%'],
+          ['模拟次数', iterations, '次'],
+        ];
+        const ws1 = XLSX.utils.aoa_to_sheet(s1);
+        ws1['!cols'] = [{ wch: 22 }, { wch: 14 }, { wch: 20 }];
+        XLSX.utils.book_append_sheet(wb, ws1, '输入参数');
+
+        // Sheet 2: 定价公式 — every value cell is a formula referencing 输入参数
+        // Rows: header, base, drop_ratio, low, high, mid, threshold, win_prob
+        const s2 = [
+          ['项目', '公式说明', '数值'],
+          ['基准价 (元)', "=输入参数!B4", null],
+          ['降幅比例', "=输入参数!B5/100", null],
+          ['建议价下限 (元)', "=B2*(1-B3*0.6)", null],
+          ['建议价上限 (元)', "=B2*(1-B3*0.2)", null],
+          ['建议价中位 (元)', "=(B4+B5)/2", null],
+          ['中标阈值 (元)', "=B2*(1-B3*0.35)", null],
+          ['中标概率 (%)', "=MIN(95,MAX(45,75+(7-输入参数!B3)*5+(B3-0.15)*100))", null],
+        ];
+        const ws2 = XLSX.utils.aoa_to_sheet(s2);
+        // Convert formula strings (starting with '=') in column C into real formula cells
+        for (let r = 2; r <= 8; r++) {
+          const bAddr = 'B' + r;
+          const cAddr = 'C' + r;
+          const f = ws2[bAddr] && ws2[bAddr].v;
+          if (typeof f === 'string' && f.startsWith('=')) {
+            ws2[cAddr] = { t: 'n', f: f.slice(1) };
+          }
+        }
+        ws2['!cols'] = [{ wch: 22 }, { wch: 46 }, { wch: 14 }];
+        XLSX.utils.book_append_sheet(wb, ws2, '定价公式');
+
+        // Sheet 3: 竞标企业 — 12 companies, offset from base by fixed factors, with IF formula
+        const factors = [0.82, 0.87, 0.885, 0.93, 0.96, 0.99, 1.02, 1.07, 1.12, 1.18, 1.26, 1.34];
+        const names = ['华海药业','正大天晴','健耕医药','中美华东','石药集团','齐鲁制药','科伦药业','扬子江药业','恒瑞医药','海正药业','豪森药业','信立泰'];
+        const s3Head = [['厂商', '偏移系数', '预测报价 (元)', '判定']];
+        const s3 = names.map((n, i) => [n, factors[i], null, null]);
+        const ws3 = XLSX.utils.aoa_to_sheet(s3Head.concat(s3));
+        for (let i = 0; i < names.length; i++) {
+          const row = i + 2;
+          ws3['C' + row] = { t: 'n', f: '定价公式!C2*B' + row };
+          ws3['D' + row] = { t: 's', f: 'IF(C' + row + '<=定价公式!C7,"中标","淘汰")' };
+        }
+        ws3['!cols'] = [{ wch: 16 }, { wch: 12 }, { wch: 16 }, { wch: 10 }];
+        XLSX.utils.book_append_sheet(wb, ws3, '竞标企业');
+
+        // Sheet 4: 说明
+        const s4 = [
+          ['字段', '含义'],
+          ['基准价', '上轮最低中标价，作为本轮定价参考锚点'],
+          ['降幅比例', '预期集采带来的整体价格下降幅度'],
+          ['建议价下限', '基准价 × (1 - 降幅 × 0.6)，保守下限'],
+          ['建议价上限', '基准价 × (1 - 降幅 × 0.2)，激进上限'],
+          ['中标阈值', '基准价 × (1 - 降幅 × 0.35)，模型判定分界点'],
+          ['中标概率', '基于名额数与降幅的经验公式，限制在45%-95%之间'],
+          ['备注', '本工作簿单元格全部使用公式实现，修改输入参数后 Excel 会自动重算'],
+        ];
+        const ws4 = XLSX.utils.aoa_to_sheet(s4);
+        ws4['!cols'] = [{ wch: 18 }, { wch: 60 }];
+        XLSX.utils.book_append_sheet(wb, ws4, '说明');
+
+        const ts = new Date().toISOString().slice(0, 10);
+        XLSX.writeFile(wb, '竞标价格预测_带公式_' + ts + '.xlsx');
+      });
+    }
   }
 
   // Start when DOM is ready
